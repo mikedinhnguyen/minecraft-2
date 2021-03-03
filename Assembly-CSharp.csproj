@@ -57,6 +57,7 @@
     <Compile Include="Assets\Scripts\ItemSO.cs" />
     <Compile Include="Assets\Scripts\ItemSlot.cs" />
     <Compile Include="Assets\Scripts\RecipeManager.cs" />
+    <Compile Include="Assets\Scripts\Timer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
