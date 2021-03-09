@@ -9,22 +9,22 @@ public class ItemSlot : MonoBehaviour//, IPointerDownHandler, IPointerUpHandler 
     public Image itemImage;
     public RectTransform itemTransform;
 
-    public Text count;
-    public RectTransform countTransform;
-
     private CanvasGroup cg;
     public Canvas canvas;
 
     public bool _pressed;
-    public bool _canBeHeld;
+    public bool canBeHeld;
 
     void Start()
     {
         cg = GetComponent<CanvasGroup>();
         UpdateSlotData();
-        countTransform = count.GetComponent<RectTransform>();
         _pressed = false;
-        _canBeHeld = true;
+        canBeHeld = true;
+        if (gameObject.name == "ObjectiveSlot")
+        {
+            canBeHeld = false;
+        }
     }
 
     void Update()
@@ -37,27 +37,16 @@ public class ItemSlot : MonoBehaviour//, IPointerDownHandler, IPointerUpHandler 
         if (currentItem != null)
         { // update item icons if they have an object in it
             itemImage.sprite = currentItem.itemIcon;
-            count.enabled = true;
-            if (currentItem.itemName == "None")
-            {
-                count.text = "0";
-            }
-            else
-            {
-                count.text = "1";
-            }
-            
         }
         else
         {
             itemImage.sprite = null;
-            count.enabled = false;
         }
         
         itemTransform.anchoredPosition = Vector3.zero;
         //countTransform.anchoredPosition = Vector3.zero;
     }
-    
+
     //public void OnPointerDown(PointerEventData eventData)
     //{
     //    // don't pick up own item when searching in hover event
@@ -103,8 +92,6 @@ public class ItemSlot : MonoBehaviour//, IPointerDownHandler, IPointerUpHandler 
                     itemSlot.UpdateSlotData();
                     UpdateSlotData();
 
-                    itemSlot.countTransform.anchoredPosition = Vector3.zero;
-
                     foundSlot = true;
                 }
             }
@@ -113,7 +100,6 @@ public class ItemSlot : MonoBehaviour//, IPointerDownHandler, IPointerUpHandler 
         if (!foundSlot) // if there isn't a found slot, move item back to its origin
         {
             itemTransform.anchoredPosition = Vector3.zero;
-            countTransform.anchoredPosition = Vector3.zero;
         }
         cg.blocksRaycasts = true;
     }
