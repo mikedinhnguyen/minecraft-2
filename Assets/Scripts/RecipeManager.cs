@@ -79,4 +79,18 @@ public class RecipeManager : MonoBehaviour
             }
         }
     }
+
+    public void ClearAllSlots()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            topRow[i].currentItem = null;
+            topRow[i].UpdateSlotData();
+            middleRow[i].currentItem = null;
+            middleRow[i].UpdateSlotData();
+            bottomRow[i].currentItem = null;
+            bottomRow[i].UpdateSlotData();
+        }
+        
+    }
 }

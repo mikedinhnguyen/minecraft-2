@@ -11,17 +11,11 @@ public class PointerBehavior : MonoBehaviour
         //isHolding = false;
         holdingSlot = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
     }
-    
-    void Update()
-    {
-        
-    }
 
     public void PressedDown()
     {
         if (gameObject.GetComponent<ItemSlot>() != null)
         {
-            Debug.Log("down");
             itemPending = gameObject.GetComponent<ItemSlot>();
         }
     }
@@ -30,23 +24,35 @@ public class PointerBehavior : MonoBehaviour
     {
         if (itemPending != null && itemPending.currentItem != null && itemPending.canBeHeld)
         {
-            //hasItem = true;
-            Debug.Log("up");
-            //itemInHand = itemPending;
-            //spriteIcon = itemInHand.GetComponentInChildren<Rigidbody2D>();
             holdingSlot.currentItem = itemPending.currentItem;
         }
-        //else if (itemPending != null && itemPending.currentItem != null && hasItem)
-        //{
-        //    // swap items
-        //    itemInHand = itemPending;
-        //}
         else 
         {
             return;
         }
         holdingSlot.UpdateSlotData();
-        Debug.Log(itemPending + " held");
+        //Debug.Log(itemPending + " held");
+    }
+
+    public void DropItem()
+    {
+        ItemSlot craftingSlot = itemPending;
+        // check to see if there is a held item and the craftingslot IS a crafting slot
+        if (holdingSlot != null)
+        {
+            // drop item in the boxes
+            craftingSlot.currentItem = holdingSlot.currentItem;
+        }
+
+        craftingSlot.UpdateSlotData();
+    }
+
+    // TODO:
+    public void DropDragItems()
+    {
+        // check to see if there is a held item and the craftingslot IS a crafting slot
+
+        // drop item in the boxes
     }
 
     public void DebugTime()
