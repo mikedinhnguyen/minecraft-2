@@ -9,14 +9,13 @@ public class LevelManager : MonoBehaviour
 
     ItemSlot itemOutput;
     ItemSlot objective;
-    bool isComplete;
     int rand;
     // Start is called before the first frame update
     void Start()
     {
         itemOutput = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
         objective = GameObject.Find("ObjectiveSlot").GetComponent<ItemSlot>();
-        isComplete = false;
+        timeIsUp = false;
         rand = Random.Range(0, chooseFrom.Length - 1);
         objective.currentItem = chooseFrom[rand];
         objective.UpdateSlotData();
@@ -27,25 +26,34 @@ public class LevelManager : MonoBehaviour
     {
         if (itemOutput.currentItem != null && objective.currentItem != null)
         {
-            if (itemOutput.currentItem.itemName == objective.currentItem.itemName && !isComplete)
+            if (itemOutput.currentItem.itemName == objective.currentItem.itemName)
             {
-                isComplete = true;
+                // pick next objective item
+                rand = Random.Range(0, chooseFrom.Length);
+                objective.currentItem = chooseFrom[rand];
+                objective.UpdateSlotData();
+                // score point
                 ScorePoint();
             }
+        }
+        if (timeIsUp)
+        {
+            StopGame();
         }
     }
 
     void ScorePoint()
     {
-        if (isComplete)
-        {
-            int scoreInt = int.Parse(score.text);
-            scoreInt++;
-            score.text = scoreInt.ToString();
-            rand = Random.Range(0, chooseFrom.Length);
-            objective.currentItem = chooseFrom[rand];
-            objective.UpdateSlotData();
-            isComplete = false;
-        }
+        // update score
+        int scoreInt = int.Parse(score.text);
+        scoreInt += RecipeManager.recipeValue;
+        score.text = scoreInt.ToString();
+    }
+
+    void StopGame()
+    {
+        // make everything not clickable
+
+        // display end screen
     }
 }

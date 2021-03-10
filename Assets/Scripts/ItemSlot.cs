@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-//using UnityEngine.EventSystems;
 
-public class ItemSlot : MonoBehaviour//, IPointerDownHandler, IPointerUpHandler , IDragHandler
+public class ItemSlot : MonoBehaviour
 {
     public ItemSO currentItem;
 

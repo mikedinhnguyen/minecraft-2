@@ -14,6 +14,8 @@ public class RecipeManager : MonoBehaviour
 
     private List<RecipeSO> recipes = new List<RecipeSO>();
 
+    public static int recipeValue; // static to call from LevelManager
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +72,7 @@ public class RecipeManager : MonoBehaviour
             {
                 outputSlot.currentItem = recipe.output;
                 outputSlot.UpdateSlotData();
+                GetRecipeValue(recipe);
                 break;
             }
             else
@@ -91,6 +94,46 @@ public class RecipeManager : MonoBehaviour
             bottomRow[i].currentItem = null;
             bottomRow[i].UpdateSlotData();
         }
-        
+    }
+
+    public void GetRecipeValue(RecipeSO recipe)
+    {
+        // number of different values used * number of slots used
+        // grab a set of different itemso and find num
+        // loop through recipe and find any null values that can be deducted from count
+
+        HashSet<ItemSO> uniqueItems = new HashSet<ItemSO>();
+        int slotsCount = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            if (recipe.topRow[i] != null)
+            {
+                slotsCount++;
+                if (!uniqueItems.Contains(recipe.topRow[i]))
+                {
+                    uniqueItems.Add(recipe.topRow[i]);
+                }
+            }
+            if (recipe.middleRow[i] != null)
+            {
+                slotsCount++;
+                if (!uniqueItems.Contains(recipe.middleRow[i]))
+                {
+                    uniqueItems.Add(recipe.middleRow[i]);
+                }
+            }
+            if (recipe.bottomRow[i] != null)
+            {
+                slotsCount++;
+                if (!uniqueItems.Contains(recipe.bottomRow[i]))
+                {
+                    uniqueItems.Add(recipe.bottomRow[i]);
+                }
+            }
+        }
+
+        recipeValue = uniqueItems.Count * slotsCount;
+
+        // ie set of 2 items that use up 6 slots would value at 12
     }
 }
