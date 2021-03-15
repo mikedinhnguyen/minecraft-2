@@ -8,7 +8,9 @@ public class ItemSlot : MonoBehaviour
     public Image itemImage;
     public RectTransform itemTransform;
 
+    [HideInInspector]
     public bool isCraftingSlot;
+    [HideInInspector]
     public bool canBeHeld;
 
     void Start()

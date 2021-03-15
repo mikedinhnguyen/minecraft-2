@@ -4,18 +4,19 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public float timeRemaining = 10;
-    private bool _isRunning = false;
     public Text timeText;
+    [HideInInspector]
+    public static bool isRunning = false;
 
     private void Start()
     {
         // Starts the timer automatically
-        _isRunning = true;
+        isRunning = true;
     }
 
     void Update()
     {
-        if (_isRunning)
+        if (isRunning)
         {
             if (timeRemaining > 0)
             {
@@ -23,9 +24,9 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time has run out!");
+                //Debug.Log("Time has run out!");
                 timeRemaining = 0;
-                _isRunning = false;
+                isRunning = false;
             }
             int timeInt = (int)timeRemaining;
             timeText.text = timeInt.ToString();

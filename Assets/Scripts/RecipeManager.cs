@@ -14,6 +14,7 @@ public class RecipeManager : MonoBehaviour
 
     private List<RecipeSO> recipes = new List<RecipeSO>();
 
+    [HideInInspector]
     public static int recipeValue; // static to call from LevelManager
 
     // Start is called before the first frame update

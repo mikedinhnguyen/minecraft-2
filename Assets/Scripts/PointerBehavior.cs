@@ -1,26 +1,25 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PointerBehavior : MonoBehaviour
 {
     ItemSlot holdingSlot;
     ItemSlot itemPending;
-    List<ItemSlot> itemsPending;
 
     private void Start()
     {
-        //hasItem = false;
-        //isHolding = false;
         holdingSlot = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
-        itemsPending = new List<ItemSlot>();
     }
 
     public void PressedDown()
     {
-        if (gameObject.GetComponent<ItemSlot>() != null)
+        if (Input.GetMouseButton(0))
         {
-            itemPending = gameObject.GetComponent<ItemSlot>();
+            if (gameObject.GetComponent<ItemSlot>() != null)
+            {
+                itemPending = gameObject.GetComponent<ItemSlot>();
+            }
         }
+        
     }
 
     public void PressedUp()
@@ -37,39 +36,20 @@ public class PointerBehavior : MonoBehaviour
         //Debug.Log(itemPending + " held");
     }
 
-    public void PressedDownMultiple()
-    {
-        if (gameObject.GetComponent<ItemSlot>() != null)
-        {
-            itemsPending.Add(gameObject.GetComponent<ItemSlot>());
-        }
-    }
-
-    public void DropMultipleItems()
-    {
-        List<ItemSlot> craftingSlot = itemsPending;
-
-        if (holdingSlot != null)
-        {
-            for (int i = 0; i < itemsPending.Capacity; i++)
-            {
-                craftingSlot[i].currentItem = holdingSlot.currentItem;
-                craftingSlot[i].UpdateSlotData();
-            }
-        }
-        
-    }
-
     public void DropItem()
     {
-        ItemSlot craftingSlot = itemPending;
+        //ItemSlot craftingSlot = itemPending;
         // check to see if there is a held item and the craftingslot IS a crafting slot
-        if (holdingSlot != null)
+        if (Input.GetMouseButton(0))
         {
-            // drop item in the boxes
-            craftingSlot.currentItem = holdingSlot.currentItem;
-            craftingSlot.UpdateSlotData();
+            if (holdingSlot != null)
+            {
+                // drop item in the boxes
+                itemPending.currentItem = holdingSlot.currentItem;
+                itemPending.UpdateSlotData();
+            }
         }
+            
     }
 
     public void DebugTime()
