@@ -10,18 +10,26 @@ public class LevelManager : MonoBehaviour
     public TextMeshProUGUI finalScore;
     public GameObject gameView;
     public GameObject endScreen;
+    public AudioClip correct;
+    public AudioClip finished;
 
     bool gameIsEnded;
-    
+    AudioSource sound;
+
+    RecipeManager rm;
     ItemSlot itemOutput;
     ItemSlot objective;
     int rand;
     // Start is called before the first frame update
     void Start()
     {
+        rm = GameObject.Find("CraftingTable").GetComponent<RecipeManager>();
         itemOutput = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
         objective = GameObject.Find("ObjectiveSlot").GetComponent<ItemSlot>();
+        
         gameIsEnded = false;
+        sound = GetComponent<AudioSource>();
+
         rand = Random.Range(0, chooseFrom.Length - 1);
         objective.currentItem = chooseFrom[rand];
         objective.UpdateSlotData();
@@ -44,6 +52,9 @@ public class LevelManager : MonoBehaviour
                 objective.UpdateSlotData();
                 // score point
                 ScorePoint();
+                rm.ClearAllSlots();
+                sound.clip = correct;
+                sound.Play();
             }
         }
         if (!Timer.isRunning && !gameIsEnded)
@@ -66,6 +77,8 @@ public class LevelManager : MonoBehaviour
         gameView.SetActive(false);
         endScreen.SetActive(true);
         finalScore.text = score.text;
+        sound.clip = finished;
+        sound.Play();
     }
 
     public void GoToMenu()

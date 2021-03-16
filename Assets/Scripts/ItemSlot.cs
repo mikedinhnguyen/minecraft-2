@@ -33,10 +33,12 @@ public class ItemSlot : MonoBehaviour
         if (currentItem != null)
         { // update item icons if they have an object in it
             itemImage.sprite = currentItem.itemIcon;
+            itemImage.color = Color.white;
         }
         else
         {
             itemImage.sprite = null;
+            itemImage.color = Color.gray;
         }
         
         itemTransform.anchoredPosition = Vector3.zero;
