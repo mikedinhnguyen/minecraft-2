@@ -3463,6 +3463,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1144469211}
+    - target: {fileID: 8838575131260713133, guid: d55235dde8c09fb46b804dcc0b2d76aa, type: 3}
+      propertyPath: currentItem
+      value: 
+      objectReference: {fileID: 11400000, guid: f0fb4a473049b134ca0e4c562dab03ef, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d55235dde8c09fb46b804dcc0b2d76aa, type: 3}
 --- !u!224 &993628088 stripped
@@ -4183,6 +4187,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c89c0a64c08c69942b0fc42dedfc705f, type: 2}
   - {fileID: 11400000, guid: 890e7080e0633284eae55cacdad6baf0, type: 2}
   - {fileID: 11400000, guid: d678d19dbf11b8645b1b5e85b1be1692, type: 2}
+  - {fileID: 11400000, guid: 3966b590d57dce74290762f5c3a21a5b, type: 2}
+  - {fileID: 11400000, guid: f955aeb3caf750049940badc26240634, type: 2}
+  - {fileID: 11400000, guid: e3729c6ef2882e341889cdfa0e4507a5, type: 2}
+  - {fileID: 11400000, guid: 84b5dae574491dd4686988b127952364, type: 2}
+  - {fileID: 11400000, guid: 2a3ed326cef117d439f0b502d425bcfe, type: 2}
+  - {fileID: 11400000, guid: 8db280d95b965de4b86a1abbbcfcf92f, type: 2}
+  - {fileID: 11400000, guid: 68c544ccea4f9b14599684baedd20b73, type: 2}
+  - {fileID: 11400000, guid: 5087b000c72d9ab4682db2ebaa545acc, type: 2}
   score: {fileID: 1420644456}
   finalScore: {fileID: 1061342388}
   gameView: {fileID: 161689592}
@@ -7933,6 +7945,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1144469211}
+    - target: {fileID: 8838575131260713133, guid: d55235dde8c09fb46b804dcc0b2d76aa, type: 3}
+      propertyPath: currentItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 4157567c082cc7e4395224bb16a8d59a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d55235dde8c09fb46b804dcc0b2d76aa, type: 3}
 --- !u!224 &1886430534 stripped

@@ -7,5 +7,8 @@ public class RecipeSO : ScriptableObject
     public ItemSO[] middleRow = new ItemSO[3];
     public ItemSO[] bottomRow = new ItemSO[3];
 
+    public bool isShapeless;
+    public ItemSO[] shapelessIngredients;
+
     public ItemSO output;
 }

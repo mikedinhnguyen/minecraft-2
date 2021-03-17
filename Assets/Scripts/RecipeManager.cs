@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RecipeManager : MonoBehaviour
@@ -32,54 +34,103 @@ public class RecipeManager : MonoBehaviour
     {
         foreach (RecipeSO recipe in recipes)
         {
-            bool correctPlacement = true;
 
-            List<ItemSO[]> allRecipeSlots = new List<ItemSO[]>();
-            allRecipeSlots.Add(recipe.topRow);
-            allRecipeSlots.Add(recipe.middleRow);
-            allRecipeSlots.Add(recipe.bottomRow);
-
-            // comparing the crafting item slots with recipes on hand and see if a crafting item is able to be made
-            for (int i = 0; i < 3; i++)
+            if (!recipe.isShapeless)
             {
-                for (int j = 0; j < allRecipeSlots[i].Length; j++)
+                bool correctPlacement = true;
+
+                List<ItemSO[]> allRecipeSlots = new List<ItemSO[]>();
+                allRecipeSlots.Add(recipe.topRow);
+                allRecipeSlots.Add(recipe.middleRow);
+                allRecipeSlots.Add(recipe.bottomRow);
+
+                // comparing the crafting item slots with recipes on hand and see if a crafting item is able to be made
+                for (int i = 0; i < 3; i++)
                 {
-                    if (allRecipeSlots[i][j] != null)
+                    for (int j = 0; j < allRecipeSlots[i].Length; j++)
                     {
-                        if (allSlots[i][j].currentItem != null)
+                        if (allRecipeSlots[i][j] != null)
                         {
-                            if (allRecipeSlots[i][j].itemName != allSlots[i][j].currentItem.itemName)
+                            if (allSlots[i][j].currentItem != null)
+                            {
+                                if (allRecipeSlots[i][j].itemName != allSlots[i][j].currentItem.itemName)
+                                {
+                                    correctPlacement = false;
+                                }
+                            }
+                            else
                             {
                                 correctPlacement = false;
                             }
                         }
                         else
                         {
-                            correctPlacement = false;
-                        }
-                    }
-                    else
-                    {
-                        if (allSlots[i][j].currentItem != null)
-                        {
-                            correctPlacement = false;
-                            continue;
+                            if (allSlots[i][j].currentItem != null)
+                            {
+                                correctPlacement = false;
+                                continue;
+                            }
                         }
                     }
                 }
-            }
 
-            if (correctPlacement)
-            {
-                outputSlot.currentItem = recipe.output;
-                outputSlot.UpdateSlotData();
-                GetRecipeValue(recipe);
-                break;
+                if (correctPlacement)
+                {
+                    outputSlot.currentItem = recipe.output;
+                    outputSlot.UpdateSlotData();
+                    GetRecipeValue(recipe);
+                    break;
+                }
+                else
+                {
+                    outputSlot.currentItem = null;
+                    outputSlot.UpdateSlotData();
+                }
             }
-            else
+            else // is shapeless
             {
-                outputSlot.currentItem = null;
-                outputSlot.UpdateSlotData();
+                List<ItemSO> check = new List<ItemSO>();
+                List<ItemSO> current = new List<ItemSO>();
+
+                for (int i = 0; i < recipe.shapelessIngredients.Length; i++)
+                {
+                    check.Add(recipe.shapelessIngredients[i]);
+                }
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (topRow[i].currentItem != null)
+                    {
+                        current.Add(topRow[i].currentItem);
+                    }
+                    if (middleRow[i].currentItem != null)
+                    {
+                        current.Add(middleRow[i].currentItem);
+                    }
+                    if (bottomRow[i].currentItem != null)
+                    {
+                        current.Add(bottomRow[i].currentItem);
+                    }
+                }
+                
+                ItemSO[] recipeArr = check.ToArray();
+                ItemSO[] currArr = current.ToArray();
+
+                Array.Sort(recipeArr, (x, y) => String.Compare(x.itemName, y.itemName));
+                Array.Sort(currArr, (x, y) => String.Compare(x.itemName, y.itemName));
+
+                if (Enumerable.SequenceEqual(recipeArr, currArr))
+                {
+                    outputSlot.currentItem = recipe.output;
+                    outputSlot.UpdateSlotData();
+                    GetRecipeValue(recipe);
+                    break;
+                }
+                else
+                {
+                    outputSlot.currentItem = null;
+                    outputSlot.UpdateSlotData();
+                }
             }
         }
     }
@@ -105,35 +156,63 @@ public class RecipeManager : MonoBehaviour
 
         HashSet<ItemSO> uniqueItems = new HashSet<ItemSO>();
         int slotsCount = 0;
-        for (int i = 0; i < 3; i++)
-        {
-            if (recipe.topRow[i] != null)
-            {
-                slotsCount++;
-                if (!uniqueItems.Contains(recipe.topRow[i]))
-                {
-                    uniqueItems.Add(recipe.topRow[i]);
-                }
-            }
-            if (recipe.middleRow[i] != null)
-            {
-                slotsCount++;
-                if (!uniqueItems.Contains(recipe.middleRow[i]))
-                {
-                    uniqueItems.Add(recipe.middleRow[i]);
-                }
-            }
-            if (recipe.bottomRow[i] != null)
-            {
-                slotsCount++;
-                if (!uniqueItems.Contains(recipe.bottomRow[i]))
-                {
-                    uniqueItems.Add(recipe.bottomRow[i]);
-                }
-            }
-        }
 
-        recipeValue = uniqueItems.Count * slotsCount;
+        if (!recipe.isShapeless)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (recipe.topRow[i] != null)
+                {
+                    slotsCount++;
+                    if (!uniqueItems.Contains(recipe.topRow[i]))
+                    {
+                        uniqueItems.Add(recipe.topRow[i]);
+                    }
+                }
+                if (recipe.middleRow[i] != null)
+                {
+                    slotsCount++;
+                    if (!uniqueItems.Contains(recipe.middleRow[i]))
+                    {
+                        uniqueItems.Add(recipe.middleRow[i]);
+                    }
+                }
+                if (recipe.bottomRow[i] != null)
+                {
+                    slotsCount++;
+                    if (!uniqueItems.Contains(recipe.bottomRow[i]))
+                    {
+                        uniqueItems.Add(recipe.bottomRow[i]);
+                    }
+                }
+            }
+
+            recipeValue = uniqueItems.Count * slotsCount;
+        }
+        else // shapeless
+        {
+            ItemSO[] items = new ItemSO[recipe.shapelessIngredients.Length];
+
+            for (int i = 0; i < recipe.shapelessIngredients.Length; i++)
+            {
+                items[i] = recipe.shapelessIngredients[i];
+            }
+
+            foreach (ItemSO item in items)
+            {
+                if (item != null)
+                {
+                    slotsCount++;
+                    if (!uniqueItems.Contains(item))
+                    {
+                        uniqueItems.Add(item);
+                    }
+                }
+                
+            }
+
+            recipeValue = uniqueItems.Count * slotsCount;
+        }
 
         // ie set of 2 items that use up 6 slots would value at 12
     }
