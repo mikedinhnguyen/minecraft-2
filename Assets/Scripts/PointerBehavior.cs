@@ -19,7 +19,6 @@ public class PointerBehavior : MonoBehaviour
                 itemPending = gameObject.GetComponent<ItemSlot>();
             }
         }
-        
     }
 
     public void PressedUp()
@@ -42,18 +41,18 @@ public class PointerBehavior : MonoBehaviour
         // check to see if there is a held item and the craftingslot IS a crafting slot
         if (Input.GetMouseButton(0))
         {
-            if (holdingSlot != null)
+            if (holdingSlot != null && itemPending.currentItem != holdingSlot.currentItem)
             {
                 // drop item in the boxes
                 itemPending.currentItem = holdingSlot.currentItem;
-                itemPending.UpdateSlotData();
             }
+            //else if (holdingSlot != null && itemPending.currentItem == holdingSlot.currentItem)
+            //{
+            //    // remove items in boxes
+            //    itemPending.currentItem = null;
+            //}
+            itemPending.UpdateSlotData();
         }
             
-    }
-
-    public void DebugTime()
-    {
-        Debug.Log(gameObject + " clicked");
     }
 }

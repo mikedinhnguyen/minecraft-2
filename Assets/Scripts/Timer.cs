@@ -12,12 +12,17 @@ public class Timer : MonoBehaviour
     {
         // Starts the timer automatically
         isRunning = true;
+        timeText.color = Color.white;
     }
 
     void Update()
     {
         if (isRunning)
         {
+            if (timeRemaining < 10)
+            {
+                timeText.color = new Color(250f/255f, 40f/255f, 40f/255f);
+            }
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
@@ -27,9 +32,10 @@ public class Timer : MonoBehaviour
                 //Debug.Log("Time has run out!");
                 timeRemaining = 0;
                 isRunning = false;
+                LevelManager.gameIsEnded = true;
             }
-            int timeInt = (int)timeRemaining;
-            timeText.text = timeInt.ToString();
+
+            timeText.text = timeRemaining.ToString("F1");
         }
     }
 }
