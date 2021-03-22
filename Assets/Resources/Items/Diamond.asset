@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: Diamond
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: df54213cf6b310e4e972ae20bc517217, type: 3}
+  itemIcon: {fileID: 21300000, guid: ddc87f18cdccb3f4eb3542bc35b96525, type: 3}
   itemName: Diamond

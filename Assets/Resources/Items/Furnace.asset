@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: Furnace
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 7faa1cce79da14848b67386b93637b5d, type: 3}
+  itemIcon: {fileID: 21300000, guid: 8e124bfc118e25148a691f7b1abe09fc, type: 3}
   itemName: Furnace

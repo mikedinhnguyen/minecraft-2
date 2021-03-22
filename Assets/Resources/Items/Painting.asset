@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: Painting
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: c423c863e29fbf940b90a9cbfe5a9832, type: 3}
+  itemIcon: {fileID: 21300000, guid: 408cea6b5d9e46d40a33e6f034db4388, type: 3}
   itemName: Painting

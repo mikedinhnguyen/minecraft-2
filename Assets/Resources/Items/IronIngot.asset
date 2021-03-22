@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: IronIngot
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: eba9691374d1c0241ae9e2fbcdaa50a4, type: 3}
+  itemIcon: {fileID: 21300000, guid: 069172a00cbcfe34e83d28fa50cee7b4, type: 3}
   itemName: IronIngot

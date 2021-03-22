@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: String
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 56de5e09c793525498db4cf588a108b1, type: 3}
+  itemIcon: {fileID: 21300000, guid: aacadc175d0f9ce40ac391edfba5e9ac, type: 3}
   itemName: String

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: WoodenPickaxe
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: feb865993435614438c38bbbffde7f8f, type: 3}
+  itemIcon: {fileID: 21300000, guid: 946a143b16fc8984ba559cb163ff8086, type: 3}
   itemName: WoodenPickaxe

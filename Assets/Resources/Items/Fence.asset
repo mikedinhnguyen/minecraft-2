@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: Fence
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 259b37eaad9d44b40bfb1c79260e30b4, type: 3}
+  itemIcon: {fileID: 21300000, guid: 6a47a6c48067e62488664e8d4da25d26, type: 3}
   itemName: Fence

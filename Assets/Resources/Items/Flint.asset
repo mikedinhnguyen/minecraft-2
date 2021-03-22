@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: Flint
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 14c5dec1b747a0446bf028fa795ec110, type: 3}
+  itemIcon: {fileID: 21300000, guid: 6e95aa52daf92ab408b34e09d39099c4, type: 3}
   itemName: Flint

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: FenceGate
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 5fbf689640d8bc84494a260714c9ad98, type: 3}
+  itemIcon: {fileID: 21300000, guid: 99031db82de1a464f8beab56660d82e4, type: 3}
   itemName: FenceGate

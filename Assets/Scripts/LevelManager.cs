@@ -7,6 +7,8 @@ public class LevelManager : MonoBehaviour
 {
     public ItemSO[] chooseFrom;
     public Text score;
+    public Text highScore;
+    public TextMeshProUGUI beatHighScore;
     public TextMeshProUGUI finalScore;
     public GameObject gameView;
     public GameObject pauseScreen;
@@ -17,6 +19,7 @@ public class LevelManager : MonoBehaviour
     public static bool gameIsEnded;
     bool done;
     bool gameIsPaused;
+    int highScoreInt;
     AudioSource sound;
 
     RecipeManager rm;
@@ -27,10 +30,12 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         rm = GameObject.Find("CraftingTable").GetComponent<RecipeManager>();
-        itemOutput = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
+        itemOutput = GameObject.Find("OutputSlot").GetComponent<ItemSlot>();
         objective = GameObject.Find("ObjectiveSlot").GetComponent<ItemSlot>();
         
         sound = GetComponent<AudioSource>();
+        highScoreInt = PlayerPrefs.GetInt("HighScore", 0);
+        highScore.text = highScoreInt.ToString();
 
         rand = Random.Range(0, chooseFrom.Length - 1);
         objective.currentItem = chooseFrom[rand];
@@ -103,6 +108,16 @@ public class LevelManager : MonoBehaviour
         endScreen.SetActive(true);
         finalScore.text = score.text;
         sound.PlayOneShot(finished, 0.5f);
+        int scoreInt = int.Parse(score.text);
+        if (scoreInt > highScoreInt)
+        {
+            PlayerPrefs.SetInt("HighScore", scoreInt);
+            beatHighScore.text = "You beat your high score!";
+        }
+        else
+        {
+            beatHighScore.text = "";
+        }
     }
 
     public void GoToMenu()

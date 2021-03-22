@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: IronChestplate
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: c834b66e89d9de5408db367d20a62d23, type: 3}
+  itemIcon: {fileID: 21300000, guid: 9a0c132837122cf468c318493a328322, type: 3}
   itemName: IronChestplate

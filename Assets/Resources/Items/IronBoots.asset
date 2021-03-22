@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: IronBoots
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 1c2903a591c38164895fd171369b78ef, type: 3}
+  itemIcon: {fileID: 21300000, guid: f0be1a944afc6ad41adce0afcfb48439, type: 3}
   itemName: IronBoots

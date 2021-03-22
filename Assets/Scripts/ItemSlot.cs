@@ -6,6 +6,7 @@ public class ItemSlot : MonoBehaviour
     public ItemSO currentItem;
 
     public Image itemImage;
+    public Image itemSelector;
     public RectTransform itemTransform;
 
     [HideInInspector]
@@ -18,6 +19,7 @@ public class ItemSlot : MonoBehaviour
         UpdateSlotData();
         isCraftingSlot = false;
         canBeHeld = true;
+        itemSelector.gameObject.SetActive(false);
         if (gameObject.name == "ObjectiveSlot")
         {
             canBeHeld = false;

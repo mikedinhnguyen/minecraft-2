@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: WoodenSword
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: b3f337b19168cf44ebcb6a70a2c61c78, type: 3}
+  itemIcon: {fileID: 21300000, guid: 139022938ff13f4469e90733a0a9af9c, type: 3}
   itemName: WoodenSword

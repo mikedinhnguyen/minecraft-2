@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: Bowl
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 7b78c82ce9aefe04c9c2fc555a3cb5ab, type: 3}
+  itemIcon: {fileID: 21300000, guid: 5a514888f17fbe54795e06e88ce3bb2a, type: 3}
   itemName: Bowl

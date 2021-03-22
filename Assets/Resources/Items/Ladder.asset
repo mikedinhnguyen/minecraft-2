@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: Ladder
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: aa5479214f66dc34e9dc8a4cc4bebffe, type: 3}
+  itemIcon: {fileID: 21300000, guid: 3152b65c6f5907f449c16b3fe8a9c141, type: 3}
   itemName: Ladder

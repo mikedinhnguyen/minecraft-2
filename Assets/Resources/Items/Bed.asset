@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: Bed
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 6b8dc9c87509dc64690ad851ac5a9c06, type: 3}
+  itemIcon: {fileID: 21300000, guid: 07f0563f90536ef479a70afc97d8a15d, type: 3}
   itemName: Bed

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: Bookshelf
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 97d477d69bf861343a05680c3b6c2e97, type: 3}
+  itemIcon: {fileID: 21300000, guid: 1365a3ce5e72cbd4a97d85aab4eebe7c, type: 3}
   itemName: Bookshelf

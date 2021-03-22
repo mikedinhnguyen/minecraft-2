@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
   m_Name: Arrow
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: dc760272dd2d0e144b72aaa76dc6a386, type: 3}
+  itemIcon: {fileID: 21300000, guid: 429f612d55e9f774a94e0b3a0c77e60a, type: 3}
   itemName: Arrow
