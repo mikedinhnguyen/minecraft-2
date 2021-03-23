@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
-  m_Name: Fence
+  m_Name: Egg
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 6a47a6c48067e62488664e8d4da25d26, type: 3}
-  itemName: Fence
+  itemIcon: {fileID: 21300000, guid: 984084a998ea5b347b17361c2cc12d8a, type: 3}
+  itemName: Egg

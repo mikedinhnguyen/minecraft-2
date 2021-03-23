@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
@@ -55,11 +56,8 @@ public class LevelManager : MonoBehaviour
                     rand = Random.Range(0, chooseFrom.Length);
                     objective.currentItem = chooseFrom[rand];
                 }
-                
-                objective.UpdateSlotData();
-                // score point
-                ScorePoint();
-                rm.ClearAllSlots();
+
+                StartCoroutine(ScorePoint());
                 sound.PlayOneShot(correct, 0.5f);
             }
         }
@@ -78,12 +76,15 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void ScorePoint()
+    IEnumerator ScorePoint()
     {
+        yield return new WaitForSeconds(0.5f);
+        objective.UpdateSlotData();
         // update score
         int scoreInt = int.Parse(score.text);
         scoreInt += RecipeManager.recipeValue;
         score.text = scoreInt.ToString();
+        rm.ClearAllSlots();
     }
 
     void PauseGame()

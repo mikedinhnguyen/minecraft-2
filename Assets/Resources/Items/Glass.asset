@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82cef3f8845735d409b51f00263d436f, type: 3}
-  m_Name: Wood
+  m_Name: Glass
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 836ab0bde55040e45bc66068bfa5f366, type: 3}
-  itemName: Wood
+  itemIcon: {fileID: 21300000, guid: 072c97bedc943ab4b9e97324136122db, type: 3}
+  itemName: Glass
