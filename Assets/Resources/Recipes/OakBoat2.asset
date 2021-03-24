@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 11400000, guid: c210b359eecce7942a88f6c386ba4b93, type: 2}
   bottomRow:
-  - {fileID: 11400000, guid: 0a82a336c1f32e14f8fb22f1d3de53ef, type: 2}
+  - {fileID: 11400000, guid: c210b359eecce7942a88f6c386ba4b93, type: 2}
   - {fileID: 11400000, guid: c210b359eecce7942a88f6c386ba4b93, type: 2}
   - {fileID: 11400000, guid: c210b359eecce7942a88f6c386ba4b93, type: 2}
   isShapeless: 0
