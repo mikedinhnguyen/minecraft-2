@@ -6,6 +6,8 @@ public class PointerBehavior : MonoBehaviour
     ItemSlot holdingSlot;
     ItemSlot itemPending;
     Transform inventory;
+    bool touchedLastFrame = false;
+    bool justPressed = false;
 
     private void Start()
     {
@@ -13,15 +15,21 @@ public class PointerBehavior : MonoBehaviour
         inventory = GameObject.Find("Inventory").GetComponent<Transform>();
     }
 
-    //IEnumerator Cooldown()
-    //{
-    //    yield return new WaitForSeconds(0.5f);
-    //}
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(0.2f);
+        justPressed = false;
+    }
 
     public void TouchDown()
     {
-        if (Input.touchCount > 0)
+        if (touchedLastFrame && Input.touchCount == 0)
         {
+            touchedLastFrame = false;
+        }
+        else if (!touchedLastFrame && Input.touchCount > 0)
+        {
+            touchedLastFrame = true;
             Touch touch = Input.GetTouch(0);
 
             if (touch.phase == TouchPhase.Began)
@@ -88,8 +96,9 @@ public class PointerBehavior : MonoBehaviour
     public void DropItem()
     {
         // check to see if there is a held item and the craftingslot IS a crafting slot
-        if (Input.GetMouseButton(0))
+        if (!justPressed && Input.GetMouseButton(0))
         {
+            justPressed = true;
             if (holdingSlot != null && itemPending.currentItem != holdingSlot.currentItem)
             {
                 // drop item in the boxes
@@ -105,6 +114,7 @@ public class PointerBehavior : MonoBehaviour
                     itemPending.UpdateSlotData();
                 }
             }
+            StartCoroutine(Cooldown());
         }
     }
 

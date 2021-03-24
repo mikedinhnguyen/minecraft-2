@@ -1,14 +1,13 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
     public ItemSO[] chooseFrom;
-    public Text score;
-    public Text highScore;
+    public TextMeshProUGUI score;
+    public TextMeshProUGUI highScore;
     public TextMeshProUGUI beatHighScore;
     public TextMeshProUGUI finalScore;
     public GameObject gameView;
@@ -33,7 +32,8 @@ public class LevelManager : MonoBehaviour
         rm = GameObject.Find("CraftingTable").GetComponent<RecipeManager>();
         itemOutput = GameObject.Find("OutputSlot").GetComponent<ItemSlot>();
         objective = GameObject.Find("ObjectiveSlot").GetComponent<ItemSlot>();
-        
+
+        gameIsEnded = false;
         sound = GetComponent<AudioSource>();
         highScoreInt = PlayerPrefs.GetInt("HighScore", 0);
         highScore.text = highScoreInt.ToString();
