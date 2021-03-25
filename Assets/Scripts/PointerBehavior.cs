@@ -12,7 +12,23 @@ public class PointerBehavior : MonoBehaviour
     private void Start()
     {
         holdingSlot = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
-        inventory = GameObject.Find("Inventory").GetComponent<Transform>();
+        if (transform.parent.parent.name == "Construction")
+        {
+            inventory = GameObject.Find("InventoryC").GetComponent<Transform>();
+        }
+        else if (transform.parent.parent.name == "Equipment")
+        {
+            inventory = GameObject.Find("InventoryE").GetComponent<Transform>();
+        }
+        else if (transform.parent.parent.name == "Items")
+        {
+            inventory = GameObject.Find("InventoryI").GetComponent<Transform>();
+        }
+        else if (transform.parent.parent.name == "Nature")
+        {
+            inventory = GameObject.Find("InventoryN").GetComponent<Transform>();
+        }
+        //inventory = GameObject.Find("Inventory").GetComponent<Transform>();
     }
 
     IEnumerator Cooldown()
@@ -130,4 +146,33 @@ public class PointerBehavior : MonoBehaviour
             itemPending.UpdateSlotData();
         }
     }
+
+    public void CategoryPick()
+    {
+        if (itemPending != null && itemPending.currentItem != null && itemPending.canBeHeld)
+        {
+            if (holdingSlot != null)
+            {
+                // find holding slot item, uncheck selector
+                for (int i = 0; i < inventory.childCount; i++)
+                {
+                    ItemSlot item = inventory.GetChild(i).gameObject.GetComponent<ItemSlot>();
+                    if (holdingSlot.currentItem == item.currentItem)
+                    {
+                        item.itemSelector.gameObject.SetActive(false);
+                        break;
+                    }
+                }
+            }
+
+            holdingSlot.currentItem = itemPending.currentItem;
+            itemPending.itemSelector.gameObject.SetActive(true);
+        }
+        else
+        {
+            return;
+        }
+        holdingSlot.UpdateSlotData();
+    }
+
 }

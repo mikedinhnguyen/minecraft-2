@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
     ItemSlot itemOutput;
     ItemSlot objective;
     int rand;
-    // Start is called before the first frame update
+
     void Start()
     {
         rm = GameObject.Find("CraftingTable").GetComponent<RecipeManager>();
@@ -35,15 +35,15 @@ public class LevelManager : MonoBehaviour
 
         gameIsEnded = false;
         sound = GetComponent<AudioSource>();
-        highScoreInt = PlayerPrefs.GetInt("HighScore", 0);
+        //highScoreInt = PlayerPrefs.GetInt("HighScore", 0);
+        highScoreInt = SaveSystem.LoadPlayer();
         highScore.text = highScoreInt.ToString();
 
         rand = Random.Range(0, chooseFrom.Length - 1);
         objective.currentItem = chooseFrom[rand];
         objective.UpdateSlotData();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (itemOutput.currentItem != null && objective.currentItem != null)
@@ -87,6 +87,22 @@ public class LevelManager : MonoBehaviour
         rm.ClearAllSlots();
     }
 
+    public void CleanUpSelectors(Transform inventory)
+    {
+        for (int i = 0; i < inventory.childCount; i++)
+        {
+            ItemSlot item = inventory.GetChild(i).gameObject.GetComponent<ItemSlot>();
+            item.itemSelector.gameObject.SetActive(false);
+        }
+    }
+
+    public void ClearHolding()
+    {
+        ItemSlot holdingSlot = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
+        holdingSlot.currentItem = null;
+        holdingSlot.UpdateSlotData();
+    }
+
     void PauseGame()
     {
         Timer.isRunning = false;
@@ -112,7 +128,8 @@ public class LevelManager : MonoBehaviour
         int scoreInt = int.Parse(score.text);
         if (scoreInt > highScoreInt)
         {
-            PlayerPrefs.SetInt("HighScore", scoreInt);
+            //PlayerPrefs.SetInt("HighScore", scoreInt);
+            SaveSystem.SavePlayer(scoreInt);
             beatHighScore.text = "You beat your high score!";
         }
         else
