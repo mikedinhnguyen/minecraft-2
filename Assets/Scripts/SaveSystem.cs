@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
 public static class SaveSystem
 {
@@ -49,6 +50,22 @@ public static class SaveSystem
             Debug.LogErrorFormat("Failed to load file at {0}", path);
             stream.Close();
             return 0;
+        }
+    }
+
+    public static void DeletePlayer()
+    {
+        string path = Application.persistentDataPath + "/saves/player.save";
+        if (Directory.Exists(Application.persistentDataPath + "/saves"))
+        {
+            try
+            {
+                File.Delete(path);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
         }
     }
 }

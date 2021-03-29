@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public AudioClip correct;
     public AudioClip finished;
 
+    public static string tabWithItem;
     public static bool gameIsEnded;
     bool done;
     bool gameIsPaused;
@@ -33,6 +34,7 @@ public class LevelManager : MonoBehaviour
         itemOutput = GameObject.Find("OutputSlot").GetComponent<ItemSlot>();
         objective = GameObject.Find("ObjectiveSlot").GetComponent<ItemSlot>();
 
+        tabWithItem = "";
         gameIsEnded = false;
         sound = GetComponent<AudioSource>();
         //highScoreInt = PlayerPrefs.GetInt("HighScore", 0);
@@ -87,12 +89,22 @@ public class LevelManager : MonoBehaviour
         rm.ClearAllSlots();
     }
 
-    public void CleanUpSelectors(Transform inventory)
+    public static void CleanUpSelectors(Transform inventory)
     {
         for (int i = 0; i < inventory.childCount; i++)
         {
             ItemSlot item = inventory.GetChild(i).gameObject.GetComponent<ItemSlot>();
             item.itemSelector.gameObject.SetActive(false);
+        }
+    }
+
+    // TODO: fix selectors bug
+    public static void CheckForTab(Transform tab)
+    {
+        if (!tab.gameObject.activeInHierarchy)
+        {
+            // Debug.Log("cleaning up " + tab.name);
+            CleanUpSelectors(tab);
         }
     }
 

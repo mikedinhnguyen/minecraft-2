@@ -100,6 +100,8 @@ public class PointerBehavior : MonoBehaviour
             }
 
             holdingSlot.currentItem = itemPending.currentItem;
+            LevelManager.tabWithItem = transform.parent.name;
+            // Debug.Log("now holding item in " + LevelManager.tabWithItem);
             itemPending.itemSelector.gameObject.SetActive(true);
         }
         else 
@@ -147,32 +149,23 @@ public class PointerBehavior : MonoBehaviour
         }
     }
 
-    public void CategoryPick()
+    public void CategoryPick(Transform inventory)
     {
-        if (itemPending != null && itemPending.currentItem != null && itemPending.canBeHeld)
-        {
-            if (holdingSlot != null)
-            {
-                // find holding slot item, uncheck selector
-                for (int i = 0; i < inventory.childCount; i++)
-                {
-                    ItemSlot item = inventory.GetChild(i).gameObject.GetComponent<ItemSlot>();
-                    if (holdingSlot.currentItem == item.currentItem)
-                    {
-                        item.itemSelector.gameObject.SetActive(false);
-                        break;
-                    }
-                }
-            }
-
-            holdingSlot.currentItem = itemPending.currentItem;
-            itemPending.itemSelector.gameObject.SetActive(true);
-        }
-        else
+        if (holdingSlot == null)
         {
             return;
         }
-        holdingSlot.UpdateSlotData();
+        // check if any items are part of holding
+        LevelManager.CleanUpSelectors(inventory);
+        for (int i = 0; i < inventory.childCount; i++)
+        {
+            ItemSlot item = inventory.GetChild(i).gameObject.GetComponent<ItemSlot>();
+            if (holdingSlot != null && item.currentItem == holdingSlot.currentItem)
+            {
+                item.itemSelector.gameObject.SetActive(true);
+                item.UpdateSlotData();
+                return;
+            }
+        }
     }
-
 }
