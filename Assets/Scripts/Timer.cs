@@ -8,10 +8,10 @@ public class Timer : MonoBehaviour
     [HideInInspector]
     public static bool isRunning = false;
 
-    private void Start()
+    public void StartTimer(int time)
     {
-        // Starts the timer automatically
         isRunning = true;
+        timeRemaining = time;
         timeText.color = Color.white;
     }
 

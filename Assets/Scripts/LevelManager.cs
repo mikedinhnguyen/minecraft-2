@@ -23,17 +23,14 @@ public class LevelManager : MonoBehaviour
     int highScoreInt;
     AudioSource sound;
 
-    RecipeManager rm;
-    ItemSlot itemOutput;
-    ItemSlot objective;
+    public RecipeManager recipeManager;
+    public ItemSlot itemOutput;
+    public ItemSlot objective;
+    public ItemSlot holdingSlot;
     int rand;
 
     void Start()
     {
-        rm = GameObject.Find("CraftingTable").GetComponent<RecipeManager>();
-        itemOutput = GameObject.Find("OutputSlot").GetComponent<ItemSlot>();
-        objective = GameObject.Find("ObjectiveSlot").GetComponent<ItemSlot>();
-
         tabWithItem = "";
         gameIsEnded = false;
         sound = GetComponent<AudioSource>();
@@ -86,7 +83,7 @@ public class LevelManager : MonoBehaviour
         int scoreInt = int.Parse(score.text);
         scoreInt += RecipeManager.recipeValue;
         score.text = scoreInt.ToString();
-        rm.ClearAllSlots();
+        recipeManager.ClearAllSlots();
     }
 
     public static void CleanUpSelectors(Transform inventory)
@@ -97,8 +94,7 @@ public class LevelManager : MonoBehaviour
             item.itemSelector.gameObject.SetActive(false);
         }
     }
-
-    // TODO: fix selectors bug
+    
     public static void CheckForTab(Transform tab)
     {
         if (!tab.gameObject.activeInHierarchy)
@@ -110,7 +106,6 @@ public class LevelManager : MonoBehaviour
 
     public void ClearHolding()
     {
-        ItemSlot holdingSlot = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
         holdingSlot.currentItem = null;
         holdingSlot.UpdateSlotData();
     }

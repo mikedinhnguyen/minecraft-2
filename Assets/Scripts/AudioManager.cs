@@ -6,12 +6,13 @@ public class AudioManager : MonoBehaviour
 {
     public AudioMixer mixer;
     public AudioSource sound;
+    public Slider slider;
 
     private void Start()
     {
         float vol = PlayerPrefs.GetFloat("Volume", 0.5f);
         mixer.SetFloat("MasterVolume", Mathf.Log10(vol) * 20);
-        GameObject.Find("VolumeSlider").GetComponent<Slider>().value = vol;
+        slider.value = vol;
     }
 
     public void SetVolume(float sliderVal)
