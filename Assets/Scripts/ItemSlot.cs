@@ -40,7 +40,9 @@ public class ItemSlot : MonoBehaviour
         else
         {
             itemImage.sprite = null;
-            itemImage.color = Color.gray;
+            Color color = Color.gray;
+            color.a = 0;
+            itemImage.color = color;
         }
         
         itemTransform.anchoredPosition = Vector3.zero;

@@ -17,7 +17,7 @@ public class RecipeManager : MonoBehaviour
     private List<RecipeSO> recipes = new List<RecipeSO>();
 
     [HideInInspector]
-    public static int recipeValue; // static to call from LevelManager
+    public int recipeValue;
 
     // Start is called before the first frame update
     void Start()
@@ -28,13 +28,11 @@ public class RecipeManager : MonoBehaviour
 
         recipes.AddRange(Resources.LoadAll<RecipeSO>("Recipes/"));
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         foreach (RecipeSO recipe in recipes)
         {
-
             if (!recipe.isShapeless)
             {
                 bool correctPlacement = true;
@@ -216,4 +214,66 @@ public class RecipeManager : MonoBehaviour
 
         // ie set of 2 items that use up 6 slots would value at 12
     }
+
+    public void Hint(ItemSlot objective)
+    {
+        // grab objective recipe
+        foreach (RecipeSO recipe in recipes)
+        {
+            if (objective.currentItem == recipe.output)
+            {
+                if (!recipe.isShapeless)
+                {
+                    // grab a random ingredient from that recipe
+                    List<ItemSO[]> allRecipeSlots = new List<ItemSO[]>();
+                    allRecipeSlots.Add(recipe.topRow);
+                    allRecipeSlots.Add(recipe.middleRow);
+                    allRecipeSlots.Add(recipe.bottomRow);
+
+                    // if the crafting table doesn't have a slot full where the ingredient should be, fill it
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int j = 0; j < allRecipeSlots[i].Length; j++)
+                        {
+                            if (allRecipeSlots[i][j] != null)
+                            {
+                                if (allSlots[i][j].currentItem == null)
+                                {
+                                    allSlots[i][j].currentItem = allRecipeSlots[i][j];
+                                    allSlots[i][j].UpdateSlotData();
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                if (allSlots[i][j].currentItem != null)
+                                {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    return;
+                }
+                else // shapeless
+                {
+                    // TODO: shapeless hints
+                }
+            }
+
+        }
+    }
+
+    public void FindRecipeValue(ItemSlot objective)
+    {
+        foreach (RecipeSO recipe in recipes)
+        {
+            if (objective.currentItem == recipe.output)
+            {
+                GetRecipeValue(recipe);
+                return;
+            }
+        }
+    }
+
 }

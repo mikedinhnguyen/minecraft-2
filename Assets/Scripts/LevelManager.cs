@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     public GameObject endScreen;
     public AudioClip correct;
     public AudioClip finished;
+    public AudioClip[] clearSounds;
+    public AudioClip[] passSounds;
 
     public static string tabWithItem;
     public static bool gameIsEnded;
@@ -81,9 +83,52 @@ public class LevelManager : MonoBehaviour
         objective.UpdateSlotData();
         // update score
         int scoreInt = int.Parse(score.text);
-        scoreInt += RecipeManager.recipeValue;
+        scoreInt += recipeManager.recipeValue;
         score.text = scoreInt.ToString();
         recipeManager.ClearAllSlots();
+    }
+
+    public void Clear()
+    {
+        // play clear sound
+        rand = Random.Range(0, clearSounds.Length);
+        sound.PlayOneShot(clearSounds[rand], 0.5f);
+        recipeManager.ClearAllSlots();
+    }
+
+    public void GiveHint()
+    {
+        // deduct 5 points
+        int scoreInt = int.Parse(score.text);
+        scoreInt -= 5;
+        score.text = scoreInt.ToString();
+
+        recipeManager.Hint(objective);
+    }
+
+    public void Pass()
+    {
+        // change objectives
+        recipeManager.FindRecipeValue(objective);
+
+        string currItem = objective.currentItem.itemName;
+
+        while (objective.currentItem.itemName == currItem)
+        {
+            rand = Random.Range(0, chooseFrom.Length);
+            objective.currentItem = chooseFrom[rand];
+        }
+
+        // deduct points equal to previous objective
+        objective.UpdateSlotData();
+        int scoreInt = int.Parse(score.text);
+        scoreInt -= recipeManager.recipeValue;
+        score.text = scoreInt.ToString();
+        recipeManager.ClearAllSlots();
+
+        // play pass sound
+        rand = Random.Range(0, passSounds.Length);
+        sound.PlayOneShot(passSounds[rand], 0.5f);
     }
 
     public static void CleanUpSelectors(Transform inventory)
