@@ -25,6 +25,7 @@ public class Menu : MonoBehaviour
 
     public void DeletePlayerData()
     {
-        SaveSystem.DeletePlayer();
+        PlayerPrefs.DeleteKey("HighScore");
+        //SaveSystem.DeletePlayer();
     }
 }

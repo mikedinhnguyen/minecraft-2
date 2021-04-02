@@ -117,36 +117,38 @@ public class PointerBehavior : MonoBehaviour
         if (!justPressed && Input.GetMouseButton(0))
         {
             justPressed = true;
-            if (holdingSlot != null && itemPending.currentItem != holdingSlot.currentItem)
+
+            if (holdingSlot != null && itemPending.currentItem == null)
             {
-                // drop item in the boxes
+                // drop up item in the box if null
                 itemPending.currentItem = holdingSlot.currentItem;
                 itemPending.UpdateSlotData();
             }
-            else
+            //else if (holdingSlot != null && itemPending.currentItem != holdingSlot.currentItem)
+            //{
+            //    // drop item in the boxes
+            //    itemPending.currentItem = null;
+            //    itemPending.UpdateSlotData();
+            //}
+            else if (holdingSlot != null && itemPending.currentItem == holdingSlot.currentItem)
             {
-                if (holdingSlot != null && itemPending.currentItem == holdingSlot.currentItem)
-                {
-                    // pick up item in the box
-                    itemPending.currentItem = null;
-                    itemPending.UpdateSlotData();
-                }
+                // pick up item in the box
+                itemPending.currentItem = null;
+                itemPending.UpdateSlotData();
             }
+
             StartCoroutine(Cooldown());
         }
     }
 
     public void PickUpItem()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (holdingSlot != null && itemPending.currentItem != holdingSlot.currentItem)
         {
-            if (holdingSlot != null && itemPending.currentItem == holdingSlot.currentItem)
-            {
-                // pick up item in the box
-                itemPending.currentItem = null;
-            }
-            itemPending.UpdateSlotData();
+            // pick up item in the box
+            itemPending.currentItem = null;
         }
+        itemPending.UpdateSlotData();
     }
 
     public void CategoryPick(Transform inventory)

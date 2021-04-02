@@ -36,8 +36,8 @@ public class LevelManager : MonoBehaviour
         tabWithItem = "";
         gameIsEnded = false;
         sound = GetComponent<AudioSource>();
-        //highScoreInt = PlayerPrefs.GetInt("HighScore", 0);
-        highScoreInt = SaveSystem.LoadPlayer();
+        highScoreInt = PlayerPrefs.GetInt("HighScore", 0);
+        //highScoreInt = SaveSystem.LoadPlayer();
         highScore.text = highScoreInt.ToString();
 
         rand = Random.Range(0, chooseFrom.Length - 1);
@@ -180,8 +180,8 @@ public class LevelManager : MonoBehaviour
         int scoreInt = int.Parse(score.text);
         if (scoreInt > highScoreInt)
         {
-            //PlayerPrefs.SetInt("HighScore", scoreInt);
-            SaveSystem.SavePlayer(scoreInt);
+            PlayerPrefs.SetInt("HighScore", scoreInt);
+            //SaveSystem.SavePlayer(scoreInt);
             beatHighScore.text = "You beat your high score!";
         }
         else
