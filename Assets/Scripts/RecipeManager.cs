@@ -97,20 +97,15 @@ public class RecipeManager : MonoBehaviour
 
                 for (int i = 0; i < 3; i++)
                 {
-                    if (topRow[i].currentItem != null)
+                    for (int j = 0; j < 3; j++)
                     {
-                        current.Add(topRow[i].currentItem);
-                    }
-                    if (middleRow[i].currentItem != null)
-                    {
-                        current.Add(middleRow[i].currentItem);
-                    }
-                    if (bottomRow[i].currentItem != null)
-                    {
-                        current.Add(bottomRow[i].currentItem);
+                        if (allSlots[i][j].currentItem != null)
+                        {
+                            current.Add(allSlots[i][j].currentItem);
+                        }
                     }
                 }
-                
+
                 ItemSO[] recipeArr = check.ToArray();
                 ItemSO[] currArr = current.ToArray();
 
@@ -135,14 +130,14 @@ public class RecipeManager : MonoBehaviour
 
     public void ClearAllSlots()
     {
+
         for (int i = 0; i < 3; i++)
         {
-            topRow[i].currentItem = null;
-            topRow[i].UpdateSlotData();
-            middleRow[i].currentItem = null;
-            middleRow[i].UpdateSlotData();
-            bottomRow[i].currentItem = null;
-            bottomRow[i].UpdateSlotData();
+            for (int j = 0; j < 3; j++)
+            {
+                allSlots[i][j].currentItem = null;
+                allSlots[i][j].UpdateSlotData();
+            }
         }
     }
 
@@ -224,12 +219,10 @@ public class RecipeManager : MonoBehaviour
             {
                 if (!recipe.isShapeless)
                 {
-                    // grab a random ingredient from that recipe
                     List<ItemSO[]> allRecipeSlots = new List<ItemSO[]>();
                     allRecipeSlots.Add(recipe.topRow);
                     allRecipeSlots.Add(recipe.middleRow);
                     allRecipeSlots.Add(recipe.bottomRow);
-
                     // if the crafting table doesn't have a slot full where the ingredient should be, fill it
                     for (int i = 0; i < 3; i++)
                     {
@@ -258,9 +251,48 @@ public class RecipeManager : MonoBehaviour
                 else // shapeless
                 {
                     // TODO: shapeless hints
+                    List<ItemSO> check = new List<ItemSO>();
+                    List<ItemSO> current = new List<ItemSO>();
+
+                    for (int i = 0; i < recipe.shapelessIngredients.Length; i++)
+                    {
+                        check.Add(recipe.shapelessIngredients[i]);
+                    }
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            if (allSlots[i][j].currentItem != null)
+                            {
+                                current.Add(allSlots[i][j].currentItem);
+                            }
+                        }
+                    }
+
+                    foreach (ItemSO item in current)
+                    {
+                        if (check.Contains(item))
+                        {
+                            check.Remove(item);
+                        }
+                    }
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            if (allSlots[i][j].currentItem == null)
+                            {
+                                allSlots[i][j].currentItem = check[0];
+                                allSlots[i][j].UpdateSlotData();
+                                return;
+                            }
+                        }
+                    }
+                    return;
                 }
             }
-
         }
     }
 

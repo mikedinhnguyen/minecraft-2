@@ -6,7 +6,7 @@ public class PointerBehavior : MonoBehaviour
     ItemSlot holdingSlot;
     ItemSlot itemPending;
     Transform inventory;
-    bool touchedLastFrame = false;
+    //bool touchedLastFrame = false;
     bool justPressed = false;
 
     private void Start()
@@ -37,37 +37,37 @@ public class PointerBehavior : MonoBehaviour
         justPressed = false;
     }
 
-    public void TouchDown()
-    {
-        if (touchedLastFrame && Input.touchCount == 0)
-        {
-            touchedLastFrame = false;
-        }
-        else if (!touchedLastFrame && Input.touchCount > 0)
-        {
-            touchedLastFrame = true;
-            Touch touch = Input.GetTouch(0);
+    //public void TouchDown()
+    //{
+    //    if (touchedLastFrame && Input.touchCount == 0)
+    //    {
+    //        touchedLastFrame = false;
+    //    }
+    //    else if (!touchedLastFrame && Input.touchCount > 0)
+    //    {
+    //        touchedLastFrame = true;
+    //        Touch touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Began)
-            {
-                if (holdingSlot != null && itemPending.currentItem != holdingSlot.currentItem)
-                {
-                    // drop item in the boxes
-                    itemPending.currentItem = holdingSlot.currentItem;
-                    itemPending.UpdateSlotData();
-                }
-                else
-                {
-                    if (holdingSlot != null && itemPending.currentItem == holdingSlot.currentItem)
-                    {
-                        // pick up item in the box
-                        itemPending.currentItem = null;
-                        itemPending.UpdateSlotData();
-                    }
-                }
-            }
-        }
-    }
+    //        if (touch.phase == TouchPhase.Began)
+    //        {
+    //            if (holdingSlot != null && itemPending.currentItem != holdingSlot.currentItem)
+    //            {
+    //                // drop item in the boxes
+    //                itemPending.currentItem = holdingSlot.currentItem;
+    //                itemPending.UpdateSlotData();
+    //            }
+    //            else
+    //            {
+    //                if (holdingSlot != null && itemPending.currentItem == holdingSlot.currentItem)
+    //                {
+    //                    // pick up item in the box
+    //                    itemPending.currentItem = null;
+    //                    itemPending.UpdateSlotData();
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
     public void PressedDown()
     {

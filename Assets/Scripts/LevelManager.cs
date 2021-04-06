@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     public ItemSO[] chooseFrom;
     public TextMeshProUGUI score;
+    public TextMeshProUGUI scoreDiff;
     public TextMeshProUGUI highScore;
     public TextMeshProUGUI beatHighScore;
     public TextMeshProUGUI finalScore;
@@ -20,6 +21,7 @@ public class LevelManager : MonoBehaviour
 
     public static string tabWithItem;
     public static bool gameIsEnded;
+    public bool practice;
     bool done;
     bool gameIsPaused;
     int highScoreInt;
@@ -85,6 +87,14 @@ public class LevelManager : MonoBehaviour
         int scoreInt = int.Parse(score.text);
         scoreInt += recipeManager.recipeValue;
         score.text = scoreInt.ToString();
+
+        scoreDiff.text = "+" + recipeManager.recipeValue.ToString();
+        Color green = new Color(89f/255f, 227f/255f, 98f/255f);
+        scoreDiff.color = green;
+
+        scoreDiff.canvasRenderer.SetAlpha(1.0f);
+        scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
+
         recipeManager.ClearAllSlots();
     }
 
@@ -100,8 +110,15 @@ public class LevelManager : MonoBehaviour
     {
         // deduct 5 points
         int scoreInt = int.Parse(score.text);
-        scoreInt -= 5;
+        scoreInt -= 2;
         score.text = scoreInt.ToString();
+
+        scoreDiff.text = "-2";
+        Color red = new Color(209f / 255f, 47f / 255f, 44f / 255f);
+        scoreDiff.color = red;
+
+        scoreDiff.canvasRenderer.SetAlpha(1.0f);
+        scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
 
         recipeManager.Hint(objective);
     }
@@ -124,6 +141,14 @@ public class LevelManager : MonoBehaviour
         int scoreInt = int.Parse(score.text);
         scoreInt -= recipeManager.recipeValue;
         score.text = scoreInt.ToString();
+
+        scoreDiff.text = "-" + recipeManager.recipeValue.ToString();
+        Color red = new Color(209f/255f, 47f/255f, 44f/255f);
+        scoreDiff.color = red;
+
+        scoreDiff.canvasRenderer.SetAlpha(1.0f);
+        scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
+
         recipeManager.ClearAllSlots();
 
         // play pass sound
@@ -155,7 +180,12 @@ public class LevelManager : MonoBehaviour
         holdingSlot.UpdateSlotData();
     }
 
-    void PauseGame()
+    public void PracticeMode()
+    {
+        practice = true;
+    }
+
+    public void PauseGame()
     {
         Timer.isRunning = false;
         gameView.SetActive(false);
@@ -165,10 +195,18 @@ public class LevelManager : MonoBehaviour
 
     public void UnpauseGame()
     {
-        Timer.isRunning = true;
+        if (!practice)
+        {
+            Timer.isRunning = true;
+        }
+        
         gameView.SetActive(true);
         pauseScreen.SetActive(false);
         gameIsPaused = false;
+      
+        Color color = scoreDiff.color;
+        color.a = 0;
+        scoreDiff.color = color;
     }
 
     void StopGame()
