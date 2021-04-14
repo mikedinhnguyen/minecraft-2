@@ -236,21 +236,40 @@ public class RecipeManager : MonoBehaviour
                                     allSlots[i][j].UpdateSlotData();
                                     return;
                                 }
+                                else if (allSlots[i][j].currentItem != allRecipeSlots[i][j])
+                                {
+                                    allSlots[i][j].currentItem = allRecipeSlots[i][j];
+                                    allSlots[i][j].UpdateSlotData();
+                                    return;
+                                }
                             }
                             else
                             {
-                                if (allSlots[i][j].currentItem != null)
+                                if (allSlots[i][j].currentItem != null && allSlots[i][j].currentItem != allRecipeSlots[i][j])
                                 {
+                                    allSlots[i][j].currentItem = null;
+                                    allSlots[i][j].UpdateSlotData();
                                     continue;
                                 }
                             }
                         }
                     }
+
+                    // reached here means the recipe is already done
+                    ClearAllSlots();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int j = 0; j < allRecipeSlots[i].Length; j++)
+                        {
+                            allSlots[i][j].currentItem = allRecipeSlots[i][j];
+                            allSlots[i][j].UpdateSlotData();
+                        }
+                    }
+
                     return;
                 }
-                else // shapeless
+                else // shapeless hint
                 {
-                    // TODO: shapeless hints
                     List<ItemSO> check = new List<ItemSO>();
                     List<ItemSO> current = new List<ItemSO>();
 
@@ -263,9 +282,13 @@ public class RecipeManager : MonoBehaviour
                     {
                         for (int j = 0; j < 3; j++)
                         {
-                            if (allSlots[i][j].currentItem != null)
+                            if (allSlots[i][j].currentItem != null && check.Contains(allSlots[i][j].currentItem))
                             {
                                 current.Add(allSlots[i][j].currentItem);
+                            } else if (allSlots[i][j].currentItem != null && !check.Contains(allSlots[i][j].currentItem))
+                            {
+                                allSlots[i][j].currentItem = null;
+                                allSlots[i][j].UpdateSlotData();
                             }
                         }
                     }
@@ -275,7 +298,7 @@ public class RecipeManager : MonoBehaviour
                         if (check.Contains(item))
                         {
                             check.Remove(item);
-                        }
+                        } 
                     }
 
                     for (int i = 0; i < 3; i++)
@@ -290,8 +313,66 @@ public class RecipeManager : MonoBehaviour
                             }
                         }
                     }
+
+                    // reached here means the recipe is already done
+                    ClearAllSlots();
+                    int k = -1;
+                    for (int j = 0; j < recipe.shapelessIngredients.Length; j++)
+                    {
+                        if (j % 3 == 0)
+                        {
+                            k++;
+                        }
+                        allSlots[j % 3][k].currentItem = recipe.shapelessIngredients[j];
+                        allSlots[j % 3][k].UpdateSlotData();
+                    }
+
                     return;
                 }
+            }
+        }
+    }
+
+    public void Solve(ItemSlot objective)
+    {
+        foreach (RecipeSO recipe in recipes)
+        {
+            if (objective.currentItem == recipe.output)
+            {
+                if (!recipe.isShapeless)
+                {
+                    List<ItemSO[]> allRecipeSlots = new List<ItemSO[]>();
+                    allRecipeSlots.Add(recipe.topRow);
+                    allRecipeSlots.Add(recipe.middleRow);
+                    allRecipeSlots.Add(recipe.bottomRow);
+                    
+                    ClearAllSlots();
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int j = 0; j < allRecipeSlots[i].Length; j++)
+                        {
+                            allSlots[i][j].currentItem = allRecipeSlots[i][j];
+                            allSlots[i][j].UpdateSlotData();
+                        }
+                    }
+                }
+                else // shapeless
+                {
+                    ClearAllSlots();
+
+                    int k = -1;
+                    for (int j = 0; j < recipe.shapelessIngredients.Length; j++)
+                    {
+                        if (j % 3 == 0)
+                        {
+                            k++;
+                        }
+                        allSlots[j % 3][k].currentItem = recipe.shapelessIngredients[j];
+                        allSlots[j % 3][k].UpdateSlotData();
+                    }
+                }
+                return;
             }
         }
     }

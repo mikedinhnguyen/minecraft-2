@@ -3,8 +3,8 @@ public class PlayerData
 {
     public int highScore;
 
-    public PlayerData (int score)
+    public PlayerData (int highScore)
     {
-        highScore = score;
+        this.highScore = highScore;
     }
 }

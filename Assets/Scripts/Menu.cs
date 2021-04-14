@@ -1,9 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Menu : MonoBehaviour
 {
+    public TextMeshProUGUI highScore;
+
+    public void Start()
+    {
+        GrabHighScore();
+    }
+
     public void StartButton()
     {
         SceneManager.LoadScene(1);
@@ -23,9 +31,15 @@ public class Menu : MonoBehaviour
         image.color = alpha;
     }
 
+    public void GrabHighScore()
+    {
+        int highScoreInt = SaveSystem.LoadPlayer();
+        highScore.text = highScoreInt.ToString();
+    }
+
     public void DeletePlayerData()
     {
-        PlayerPrefs.DeleteKey("HighScore");
-        //SaveSystem.DeletePlayer();
+        //PlayerPrefs.DeleteKey("HighScore");
+        SaveSystem.DeletePlayer();
     }
 }

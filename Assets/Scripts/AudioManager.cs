@@ -6,20 +6,42 @@ public class AudioManager : MonoBehaviour
 {
     public AudioMixer mixer;
     public AudioSource sound;
-    public Slider slider;
+    public Slider masterSlider;
+    public Slider musicSlider;
+    public Slider sfxSlider;
+    float masterVol = .5f;
+    float musicVol = .5f;
+    float sfxVol = .5f;
 
     private void Start()
     {
-        float vol = PlayerPrefs.GetFloat("Volume", 0.5f);
-        mixer.SetFloat("MasterVolume", Mathf.Log10(vol) * 20);
-        slider.value = vol;
+        //float vol = PlayerPrefs.GetFloat("Volume", 1f);
+        mixer.SetFloat("MasterVolume", Mathf.Log10(masterVol) * 20);
+        masterSlider.value = masterVol;
+        mixer.SetFloat("MusicVolume", Mathf.Log10(musicVol) * 20);
+        musicSlider.value = musicVol;
+        mixer.SetFloat("SFXVolume", Mathf.Log10(sfxVol) * 20);
+        sfxSlider.value = sfxVol;
     }
 
-    public void SetVolume(float sliderVal)
+    public void SetMasterVolume(float sliderVal)
     {
         // log 10 will turn decimal val into int value and up it by 20
-        mixer.SetFloat("MasterVolume", Mathf.Log10(sliderVal) * 20);
-        PlayerPrefs.SetFloat("Volume", sliderVal);
+        // PlayerPrefs.SetFloat("Volume", sliderVal);
+        masterVol = sliderVal;
+        mixer.SetFloat("MasterVolume", Mathf.Log10(masterVol) * 20);
+    }
+
+    public void SetMusicVolume(float sliderVal)
+    {
+        musicVol = sliderVal;
+        mixer.SetFloat("MusicVolume", Mathf.Log10(musicVol) * 20);
+    }
+
+    public void SetSFXVolume(float sliderVal)
+    {
+        sfxVol = sliderVal;
+        mixer.SetFloat("SFXVolume", Mathf.Log10(sfxVol) * 20);
         sound.Play();
     }
 }

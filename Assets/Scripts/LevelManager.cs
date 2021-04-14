@@ -24,6 +24,8 @@ public class LevelManager : MonoBehaviour
     public bool practice;
     bool done;
     bool gameIsPaused;
+    bool playerSolved;
+    bool pass;
     int highScoreInt;
     AudioSource sound;
 
@@ -38,20 +40,21 @@ public class LevelManager : MonoBehaviour
         tabWithItem = "";
         gameIsEnded = false;
         sound = GetComponent<AudioSource>();
-        highScoreInt = PlayerPrefs.GetInt("HighScore", 0);
-        //highScoreInt = SaveSystem.LoadPlayer();
+        //highScoreInt = PlayerPrefs.GetInt("HighScore", 0);
+        highScoreInt = SaveSystem.LoadPlayer();
         highScore.text = highScoreInt.ToString();
 
         rand = Random.Range(0, chooseFrom.Length - 1);
         objective.currentItem = chooseFrom[rand];
         objective.UpdateSlotData();
+        playerSolved = true;
     }
     
     void Update()
     {
         if (itemOutput.currentItem != null && objective.currentItem != null)
         {
-            if (itemOutput.currentItem == objective.currentItem)
+            if (itemOutput.currentItem == objective.currentItem && playerSolved)
             {
                 // pick next objective item that's different from current item
                 while (itemOutput.currentItem == objective.currentItem)
@@ -79,6 +82,39 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    IEnumerator SolveForPlayer()
+    {
+        recipeManager.Solve(objective);
+        yield return new WaitForSeconds(1f);
+        recipeManager.ClearAllSlots();
+
+        string currItem = objective.currentItem.itemName;
+
+        while (objective.currentItem.itemName == currItem)
+        {
+            rand = Random.Range(0, chooseFrom.Length);
+            objective.currentItem = chooseFrom[rand];
+        }
+
+        // deduct points equal to previous objective
+        objective.UpdateSlotData();
+        int scoreInt = int.Parse(score.text);
+        scoreInt -= recipeManager.recipeValue;
+        score.text = scoreInt.ToString();
+
+        //scoreDiff.text = "-" + recipeManager.recipeValue.ToString();
+        //Color red = new Color(209f / 255f, 47f / 255f, 44f / 255f);
+        //scoreDiff.color = red;
+
+        //scoreDiff.canvasRenderer.SetAlpha(1.0f);
+        //scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
+
+        // play pass sound
+        rand = Random.Range(0, passSounds.Length);
+        sound.PlayOneShot(passSounds[rand], 0.5f);
+        playerSolved = true;
+    }
+
     IEnumerator ScorePoint()
     {
         yield return new WaitForSeconds(0.5f);
@@ -88,12 +124,12 @@ public class LevelManager : MonoBehaviour
         scoreInt += recipeManager.recipeValue;
         score.text = scoreInt.ToString();
 
-        scoreDiff.text = "+" + recipeManager.recipeValue.ToString();
-        Color green = new Color(89f/255f, 227f/255f, 98f/255f);
-        scoreDiff.color = green;
+        //scoreDiff.text = "+" + recipeManager.recipeValue.ToString();
+        //Color green = new Color(82f/255f, 189f/255f, 40f/255f);
+        //scoreDiff.color = green;
 
-        scoreDiff.canvasRenderer.SetAlpha(1.0f);
-        scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
+        //scoreDiff.canvasRenderer.SetAlpha(1.0f);
+        //scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
 
         recipeManager.ClearAllSlots();
     }
@@ -127,33 +163,8 @@ public class LevelManager : MonoBehaviour
     {
         // change objectives
         recipeManager.FindRecipeValue(objective);
-
-        string currItem = objective.currentItem.itemName;
-
-        while (objective.currentItem.itemName == currItem)
-        {
-            rand = Random.Range(0, chooseFrom.Length);
-            objective.currentItem = chooseFrom[rand];
-        }
-
-        // deduct points equal to previous objective
-        objective.UpdateSlotData();
-        int scoreInt = int.Parse(score.text);
-        scoreInt -= recipeManager.recipeValue;
-        score.text = scoreInt.ToString();
-
-        scoreDiff.text = "-" + recipeManager.recipeValue.ToString();
-        Color red = new Color(209f/255f, 47f/255f, 44f/255f);
-        scoreDiff.color = red;
-
-        scoreDiff.canvasRenderer.SetAlpha(1.0f);
-        scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
-
-        recipeManager.ClearAllSlots();
-
-        // play pass sound
-        rand = Random.Range(0, passSounds.Length);
-        sound.PlayOneShot(passSounds[rand], 0.5f);
+        playerSolved = false;
+        StartCoroutine(SolveForPlayer());
     }
 
     public static void CleanUpSelectors(Transform inventory)
@@ -218,8 +229,8 @@ public class LevelManager : MonoBehaviour
         int scoreInt = int.Parse(score.text);
         if (scoreInt > highScoreInt)
         {
-            PlayerPrefs.SetInt("HighScore", scoreInt);
-            //SaveSystem.SavePlayer(scoreInt);
+            //PlayerPrefs.SetInt("HighScore", scoreInt);
+            SaveSystem.SavePlayer(scoreInt);
             beatHighScore.text = "You beat your high score!";
         }
         else

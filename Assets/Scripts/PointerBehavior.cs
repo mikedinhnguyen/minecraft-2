@@ -37,38 +37,6 @@ public class PointerBehavior : MonoBehaviour
         justPressed = false;
     }
 
-    //public void TouchDown()
-    //{
-    //    if (touchedLastFrame && Input.touchCount == 0)
-    //    {
-    //        touchedLastFrame = false;
-    //    }
-    //    else if (!touchedLastFrame && Input.touchCount > 0)
-    //    {
-    //        touchedLastFrame = true;
-    //        Touch touch = Input.GetTouch(0);
-
-    //        if (touch.phase == TouchPhase.Began)
-    //        {
-    //            if (holdingSlot != null && itemPending.currentItem != holdingSlot.currentItem)
-    //            {
-    //                // drop item in the boxes
-    //                itemPending.currentItem = holdingSlot.currentItem;
-    //                itemPending.UpdateSlotData();
-    //            }
-    //            else
-    //            {
-    //                if (holdingSlot != null && itemPending.currentItem == holdingSlot.currentItem)
-    //                {
-    //                    // pick up item in the box
-    //                    itemPending.currentItem = null;
-    //                    itemPending.UpdateSlotData();
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-
     public void PressedDown()
     {
         if (Input.GetMouseButton(0))
@@ -124,12 +92,6 @@ public class PointerBehavior : MonoBehaviour
                 itemPending.currentItem = holdingSlot.currentItem;
                 itemPending.UpdateSlotData();
             }
-            //else if (holdingSlot != null && itemPending.currentItem != holdingSlot.currentItem)
-            //{
-            //    // drop item in the boxes
-            //    itemPending.currentItem = null;
-            //    itemPending.UpdateSlotData();
-            //}
             else if (holdingSlot != null && itemPending.currentItem == holdingSlot.currentItem)
             {
                 // pick up item in the box
@@ -153,7 +115,7 @@ public class PointerBehavior : MonoBehaviour
 
     public void CategoryPick(Transform inventory)
     {
-        if (holdingSlot == null)
+        if (holdingSlot.currentItem == null)
         {
             return;
         }
@@ -162,7 +124,7 @@ public class PointerBehavior : MonoBehaviour
         for (int i = 0; i < inventory.childCount; i++)
         {
             ItemSlot item = inventory.GetChild(i).gameObject.GetComponent<ItemSlot>();
-            if (holdingSlot != null && item.currentItem == holdingSlot.currentItem)
+            if (holdingSlot.currentItem != null && item.currentItem == holdingSlot.currentItem)
             {
                 item.itemSelector.gameObject.SetActive(true);
                 item.UpdateSlotData();

@@ -12,7 +12,8 @@ public class Timer : MonoBehaviour
     {
         isRunning = true;
         timeRemaining = time;
-        timeText.color = Color.white;
+        Color gray = new Color(77f/255f, 77f/255f, 77f/255f);
+        timeText.color = gray;
     }
 
     void Update()
