@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DiamondSword
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 5db33841e3338194aa5697a5ff5e8f95, type: 3}
-  itemName: DiamondSword
+  itemName: Diamond Sword

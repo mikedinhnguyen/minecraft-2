@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IronTrapdoor
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: cedd497564e98484ab2d1c372d414a51, type: 3}
-  itemName: IronTrapdoor
+  itemName: Iron Trapdoor

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CartographyTable
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 7a9d6fc02b44d534cbe6de64e4f5742a, type: 3}
-  itemName: CartographyTable
+  itemName: Cartography Table

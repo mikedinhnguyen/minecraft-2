@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DiamondPickaxe
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: a4a3e6540dd2e8141833b390c962d90c, type: 3}
-  itemName: DiamondPickaxe
+  itemName: Diamond Pickaxe

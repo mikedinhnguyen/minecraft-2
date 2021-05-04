@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MagmaCream
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 88e37ab507cb13349b811225ebee5e65, type: 3}
-  itemName: MagmaCream
+  itemName: Magma Cream

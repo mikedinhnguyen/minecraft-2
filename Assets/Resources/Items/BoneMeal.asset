@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BoneMeal
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 07137112bdba91d43adaabc4eeefd080, type: 3}
-  itemName: BoneMeal
+  itemName: Bone Meal

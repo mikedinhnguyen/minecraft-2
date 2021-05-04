@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnderPearl
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 229861de0fac8ef41a65eb47e5a759af, type: 3}
-  itemName: EnderPearl
+  itemName: Ender Pearl

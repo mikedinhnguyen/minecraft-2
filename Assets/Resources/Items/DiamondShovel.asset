@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DiamondShovel
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 4e49cc48f7b1d28498495c8f1d009647, type: 3}
-  itemName: DiamondShovel
+  itemName: Diamond Shovel

@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class PointerBehavior : MonoBehaviour
 {
+    AudioSource sound;
+    public AudioClip click;
     ItemSlot holdingSlot;
     ItemSlot itemPending;
     Transform inventory;
-    //bool touchedLastFrame = false;
     bool justPressed = false;
 
     private void Start()
     {
+        sound = GetComponent<AudioSource>();
         holdingSlot = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
         if (transform.parent.parent.name == "Construction")
         {
@@ -71,6 +73,7 @@ public class PointerBehavior : MonoBehaviour
             LevelManager.tabWithItem = transform.parent.name;
             // Debug.Log("now holding item in " + LevelManager.tabWithItem);
             itemPending.itemSelector.gameObject.SetActive(true);
+            sound.PlayOneShot(click, 0.5f);
         }
         else 
         {

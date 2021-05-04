@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnderEye
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 648b527a1da3004479455d53aa3fbcfd, type: 3}
-  itemName: EnderEye
+  itemName: Ender Eye

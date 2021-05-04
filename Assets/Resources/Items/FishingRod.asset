@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FishingRod
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 6e10544fb965c7541952eeabb84259c5, type: 3}
-  itemName: FishingRod
+  itemName: Fishing Rod

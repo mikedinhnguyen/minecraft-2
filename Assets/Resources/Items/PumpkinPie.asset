@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PumpkinPie
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 9ca0d9b8813ca874f9004d618efe70d0, type: 3}
-  itemName: PumpkinPie
+  itemName: Pumpkin Pie

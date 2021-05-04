@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SmithingTable
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: a7ecfc15497c321438f45fd22d0b19b7, type: 3}
-  itemName: SmithingTable
+  itemName: Smithing Table

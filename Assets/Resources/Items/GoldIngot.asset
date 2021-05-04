@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoldIngot
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 759b6c9d6f6bf4a429d3dd1406f6a093, type: 3}
-  itemName: GoldIngot
+  itemName: Gold Ingot

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BeetrootSoup
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 65befff314dc2f343bd7ae3f2d1e0938, type: 3}
-  itemName: BeetrootSoup
+  itemName: Beetroot Soup

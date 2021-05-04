@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: OakFenceGate
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 99031db82de1a464f8beab56660d82e4, type: 3}
-  itemName: OakFenceGate
+  itemName: Oak Fence Gate

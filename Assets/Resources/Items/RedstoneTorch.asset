@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RedstoneTorch
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: f93b885ab8b8bfc4ea3b64f034444aee, type: 3}
-  itemName: RedstoneTorch
+  itemName: Redstone Torch

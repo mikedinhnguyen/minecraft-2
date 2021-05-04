@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BlazePowder
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 33784eea3b11baa48870ebb7b20035e1, type: 3}
-  itemName: BlazePowder
+  itemName: Blaze Powder

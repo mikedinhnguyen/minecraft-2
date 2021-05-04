@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IronPickaxe
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: d51c91b4b3892a446a011b216b96d087, type: 3}
-  itemName: IronPickaxe
+  itemName: Iron Pickaxe

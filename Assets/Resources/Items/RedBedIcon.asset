@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RedBedIcon
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 5b31c41359d9c9043a0106a4f4a038eb, type: 3}
-  itemName: RedBedIcon
+  itemName: Red Bed

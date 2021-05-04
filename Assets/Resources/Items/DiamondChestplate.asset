@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DiamondChestplate
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 7c00107ad703f8247b8596e591c4d9c5, type: 3}
-  itemName: DiamondChestplate
+  itemName: Diamond Chestplate

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IronHoe
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 71827f365b0e6fc4bbb77a1353178043, type: 3}
-  itemName: IronHoe
+  itemName: Iron Hoe

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DiamondHelmet
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 657073b7683929b4fa8be3215f7ab74a, type: 3}
-  itemName: DiamondHelmet
+  itemName: Diamond Helmet

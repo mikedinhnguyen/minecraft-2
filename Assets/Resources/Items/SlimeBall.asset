@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SlimeBall
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: d8ee32205d0acd74fb59029305ec8641, type: 3}
-  itemName: SlimeBall
+  itemName: Slime Ball

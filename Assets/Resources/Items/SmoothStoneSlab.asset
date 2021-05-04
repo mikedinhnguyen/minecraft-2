@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SmoothStoneSlab
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 029f90f8de322a949926f29db4cec311, type: 3}
-  itemName: SmoothStoneSlab
+  itemName: Smooth Stone Slab

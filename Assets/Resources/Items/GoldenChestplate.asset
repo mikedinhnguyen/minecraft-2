@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoldenChestplate
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 1c5f58a571a452047be1ff24aa5e569d, type: 3}
-  itemName: GoldenChestplate
+  itemName: Golden Chestplate

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WhiteWool
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: c514c8f78667b2c488c58da6c2e2a641, type: 3}
-  itemName: WhiteWool
+  itemName: White Wool

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoldenApple
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: dde52bd1d4ffc194e84a14ee12a3ad69, type: 3}
-  itemName: GoldenApple
+  itemName: Golden Apple

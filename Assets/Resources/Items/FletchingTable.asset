@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FletchingTable
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: c9cde1877102de343abfd71bb26015d5, type: 3}
-  itemName: FletchingTable
+  itemName: Fletching Table

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IronAxe
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 10b67373492534c439ca3d175757375b, type: 3}
-  itemName: IronAxe
+  itemName: Iron Axe

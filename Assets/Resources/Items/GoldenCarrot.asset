@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoldenCarrot
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: bca72673cb354ba4daf3d2e13abcd0b4, type: 3}
-  itemName: GoldenCarrot
+  itemName: Golden Carrot

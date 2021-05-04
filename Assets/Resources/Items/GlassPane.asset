@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GlassPane
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 05a51565ff7e5fd4a9f9fe3ac0b8c37b, type: 3}
-  itemName: GlassPane
+  itemName: Glass Pane

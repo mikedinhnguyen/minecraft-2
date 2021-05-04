@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoldenHoe
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 6899d0c7e4db5b6439d0fd0cd8d03997, type: 3}
-  itemName: GoldenHoe
+  itemName: Golden Hoe

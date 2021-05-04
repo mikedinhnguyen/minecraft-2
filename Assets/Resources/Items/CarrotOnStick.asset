@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CarrotOnStick
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 75cf8158d59970d409e5b36b259d1f09, type: 3}
-  itemName: CarrotOnStick
+  itemName: Carrot on a Stick

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MelonSlice
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 198b80d625130ae489f349c02a1b9e6c, type: 3}
-  itemName: MelonSlice
+  itemName: Melon Slice

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IronNugget
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 5a3f6d5b814dc74448d2533e6c18a6ac, type: 3}
-  itemName: IronNugget
+  itemName: Iron Nugget

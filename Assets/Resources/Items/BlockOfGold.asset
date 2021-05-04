@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BlockOfGold
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: ae46a65203fdd3844b7b3359f2be712b, type: 3}
-  itemName: BlockOfGold
+  itemName: Block of Gold

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DiamondLeggings
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 3989fb44ed4067c41ac041337d735cea, type: 3}
-  itemName: DiamondLeggings
+  itemName: Diamond Leggings

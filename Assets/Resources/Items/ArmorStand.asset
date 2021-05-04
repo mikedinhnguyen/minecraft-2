@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ArmorStand
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: d0d79f0d7ea49e147803cc01f858b472, type: 3}
-  itemName: ArmorStand
+  itemName: Armor Stand

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MilkBucket
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 4b371f4247a0eb7459f2a6169ff2e2b8, type: 3}
-  itemName: MilkBucket
+  itemName: Milk Bucket

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: OakTrapdoor
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: afc746b30a9f6c548b90d28ad4512792, type: 3}
-  itemName: OakTrapdoor
+  itemName: Oak Trapdoor

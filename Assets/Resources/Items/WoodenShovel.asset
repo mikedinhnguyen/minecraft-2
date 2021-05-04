@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WoodenShovel
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: bff53dc07962a5d49a3ed53312904f64, type: 3}
-  itemName: WoodenShovel
+  itemName: Wooden Shovel

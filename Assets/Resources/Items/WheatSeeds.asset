@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WheatSeeds
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: ee9b30ff5f7bcbe4f92803987a8580c5, type: 3}
-  itemName: WheatSeeds
+  itemName: Wheat Seeds

@@ -5,19 +5,17 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
+    public SoundManager sm;
     public ItemSO[] chooseFrom;
     public TextMeshProUGUI score;
     public TextMeshProUGUI scoreDiff;
     public TextMeshProUGUI highScore;
     public TextMeshProUGUI beatHighScore;
     public TextMeshProUGUI finalScore;
+    public TextMeshProUGUI itemName;
     public GameObject gameView;
     public GameObject pauseScreen;
     public GameObject endScreen;
-    public AudioClip correct;
-    public AudioClip finished;
-    public AudioClip[] clearSounds;
-    public AudioClip[] passSounds;
 
     public static string tabWithItem;
     public static bool gameIsEnded;
@@ -27,7 +25,6 @@ public class LevelManager : MonoBehaviour
     bool playerSolved;
     bool pass;
     int highScoreInt;
-    AudioSource sound;
 
     public RecipeManager recipeManager;
     public ItemSlot itemOutput;
@@ -39,7 +36,6 @@ public class LevelManager : MonoBehaviour
     {
         tabWithItem = "";
         gameIsEnded = false;
-        sound = GetComponent<AudioSource>();
         //highScoreInt = PlayerPrefs.GetInt("HighScore", 0);
         highScoreInt = SaveSystem.LoadPlayer();
         highScore.text = highScoreInt.ToString();
@@ -47,6 +43,7 @@ public class LevelManager : MonoBehaviour
         rand = Random.Range(0, chooseFrom.Length - 1);
         objective.currentItem = chooseFrom[rand];
         objective.UpdateSlotData();
+        itemName.text = objective.currentItem.itemName;
         playerSolved = true;
     }
     
@@ -64,7 +61,7 @@ public class LevelManager : MonoBehaviour
                 }
 
                 StartCoroutine(ScorePoint());
-                sound.PlayOneShot(correct, 0.5f);
+                sm.PlayWinNoise();
             }
         }
         if (!Timer.isRunning && gameIsEnded && !done)
@@ -98,6 +95,7 @@ public class LevelManager : MonoBehaviour
 
         // deduct points equal to previous objective
         objective.UpdateSlotData();
+        itemName.text = objective.currentItem.itemName;
         int scoreInt = int.Parse(score.text);
         scoreInt -= recipeManager.recipeValue;
         score.text = scoreInt.ToString();
@@ -109,9 +107,7 @@ public class LevelManager : MonoBehaviour
         //scoreDiff.canvasRenderer.SetAlpha(1.0f);
         //scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
 
-        // play pass sound
-        rand = Random.Range(0, passSounds.Length);
-        sound.PlayOneShot(passSounds[rand], 0.5f);
+        sm.PlayPassNoise();
         playerSolved = true;
     }
 
@@ -119,6 +115,7 @@ public class LevelManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         objective.UpdateSlotData();
+        itemName.text = objective.currentItem.itemName;
         // update score
         int scoreInt = int.Parse(score.text);
         scoreInt += recipeManager.recipeValue;
@@ -136,9 +133,7 @@ public class LevelManager : MonoBehaviour
 
     public void Clear()
     {
-        // play clear sound
-        rand = Random.Range(0, clearSounds.Length);
-        sound.PlayOneShot(clearSounds[rand], 0.5f);
+        sm.PlayClearNoise();
         recipeManager.ClearAllSlots();
     }
 
@@ -225,7 +220,7 @@ public class LevelManager : MonoBehaviour
         gameView.SetActive(false);
         endScreen.SetActive(true);
         finalScore.text = score.text;
-        sound.PlayOneShot(finished, 0.5f);
+        sm.PlayFinishedNoise();
         int scoreInt = int.Parse(score.text);
         if (scoreInt > highScoreInt)
         {

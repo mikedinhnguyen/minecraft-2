@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IronIngot
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 069172a00cbcfe34e83d28fa50cee7b4, type: 3}
-  itemName: IronIngot
+  itemName: Iron Ingot

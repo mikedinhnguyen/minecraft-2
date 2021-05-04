@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoldenShovel
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: ad0480c16ea02e643ac6f3262fd22acd, type: 3}
-  itemName: GoldenShovel
+  itemName: Golden Shovel

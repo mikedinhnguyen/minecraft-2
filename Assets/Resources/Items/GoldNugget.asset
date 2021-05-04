@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoldNugget
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 8b73c148b517fc04ea49adea8aa577f5, type: 3}
-  itemName: GoldNugget
+  itemName: Gold Nugget

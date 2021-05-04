@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CocoaBeans
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 147023ef7bbf5e54ea3a35ef55d6efab, type: 3}
-  itemName: CocoaBeans
+  itemName: Cocoa Beans

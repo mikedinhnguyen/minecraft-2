@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IronChestplate
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 9a0c132837122cf468c318493a328322, type: 3}
-  itemName: IronChestplate
+  itemName: Iron Chestplate

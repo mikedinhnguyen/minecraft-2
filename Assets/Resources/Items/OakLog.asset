@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: OakLog
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 836ab0bde55040e45bc66068bfa5f366, type: 3}
-  itemName: OakLog
+  itemName: Oak Log

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HayBale
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: c896baa86b83bca4ca85a3b3a56fe873, type: 3}
-  itemName: HayBale
+  itemName: Hay Bale
