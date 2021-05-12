@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class PointerBehavior : MonoBehaviour
 {
-    AudioSource sound;
-    public AudioClip click;
+    SoundManager soundMan;
     ItemSlot holdingSlot;
     ItemSlot itemPending;
     Transform inventory;
@@ -12,7 +11,7 @@ public class PointerBehavior : MonoBehaviour
 
     private void Start()
     {
-        sound = GetComponent<AudioSource>();
+        soundMan = GameObject.Find("Canvas").GetComponent<SoundManager>();
         holdingSlot = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
         if (transform.parent.parent.name == "Construction")
         {
@@ -73,7 +72,7 @@ public class PointerBehavior : MonoBehaviour
             LevelManager.tabWithItem = transform.parent.name;
             // Debug.Log("now holding item in " + LevelManager.tabWithItem);
             itemPending.itemSelector.gameObject.SetActive(true);
-            sound.PlayOneShot(click, 0.5f);
+            soundMan.PlayClickNoise();
         }
         else 
         {

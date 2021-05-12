@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 8246120256335204226}
   - component: {fileID: 3335593373952288985}
   - component: {fileID: 3605140307809129587}
+  - component: {fileID: 302368687472331103}
   m_Layer: 5
   m_Name: ItemSlot
   m_TagString: Untagged
@@ -307,6 +308,38 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 13
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 302368687472331103}
+          m_TargetAssemblyTypeName: Test, Assembly-CSharp
+          m_MethodName: Scroll
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 302368687472331103}
+          m_TargetAssemblyTypeName: Test, Assembly-CSharp
+          m_MethodName: StopScroll
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &3335593373952288985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,3 +449,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &302368687472331103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3298742893996732350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a4b0ef7742c03469546bc80217803c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sbar: {fileID: 0}
