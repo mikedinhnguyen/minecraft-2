@@ -30,9 +30,10 @@ public class LevelManager : MonoBehaviour
     public ItemSlot itemOutput;
     public ItemSlot objective;
     public ItemSlot holdingSlot;
+    public ObjectiveCheck objCheck;
     int rand;
 
-    void Start()
+    void Awake()
     {
         tabWithItem = "";
         gameIsEnded = false;
@@ -43,6 +44,9 @@ public class LevelManager : MonoBehaviour
         rand = Random.Range(0, chooseFrom.Length - 1);
         objective.currentItem = chooseFrom[rand];
         objective.UpdateSlotData();
+
+        objCheck.CheckForBaseItem();
+
         itemName.text = objective.currentItem.itemName;
         playerSolved = true;
     }
@@ -61,6 +65,7 @@ public class LevelManager : MonoBehaviour
                 }
 
                 StartCoroutine(ScorePoint());
+
                 sm.PlayWinNoise();
             }
         }
@@ -100,12 +105,7 @@ public class LevelManager : MonoBehaviour
         scoreInt -= recipeManager.recipeValue;
         score.text = scoreInt.ToString();
 
-        //scoreDiff.text = "-" + recipeManager.recipeValue.ToString();
-        //Color red = new Color(209f / 255f, 47f / 255f, 44f / 255f);
-        //scoreDiff.color = red;
-
-        //scoreDiff.canvasRenderer.SetAlpha(1.0f);
-        //scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
+        objCheck.CheckForBaseItem();
 
         sm.PlayPassNoise();
         playerSolved = true;
@@ -121,12 +121,7 @@ public class LevelManager : MonoBehaviour
         scoreInt += recipeManager.recipeValue;
         score.text = scoreInt.ToString();
 
-        //scoreDiff.text = "+" + recipeManager.recipeValue.ToString();
-        //Color green = new Color(82f/255f, 189f/255f, 40f/255f);
-        //scoreDiff.color = green;
-
-        //scoreDiff.canvasRenderer.SetAlpha(1.0f);
-        //scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
+        objCheck.CheckForBaseItem();
 
         recipeManager.ClearAllSlots();
     }

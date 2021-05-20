@@ -42,4 +42,14 @@ public class ScrollMechanic : MonoBehaviour
     {
         isScrolling = false;
     }
+
+    public static void ResetScrollBar(Transform inventory)
+    {
+        Scrollbar tempBar;
+        tempBar = inventory.parent.GetComponentInChildren<Scrollbar>();
+        if (tempBar.value != 1)
+        {
+            tempBar.value = 1;
+        }
+    }
 }

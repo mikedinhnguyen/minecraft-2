@@ -117,12 +117,15 @@ public class PointerBehavior : MonoBehaviour
 
     public void CategoryPick(Transform inventory)
     {
+        ScrollMechanic.ResetScrollBar(inventory);
+
         if (holdingSlot.currentItem == null)
         {
             return;
         }
         // check if any items are part of holding
         LevelManager.CleanUpSelectors(inventory);
+        
         for (int i = 0; i < inventory.childCount; i++)
         {
             ItemSlot item = inventory.GetChild(i).gameObject.GetComponent<ItemSlot>();

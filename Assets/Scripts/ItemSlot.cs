@@ -11,7 +11,7 @@ public class ItemSlot : MonoBehaviour
 
     [HideInInspector]
     public bool isCraftingSlot;
-    [HideInInspector]
+    //[HideInInspector]
     public bool canBeHeld;
 
     void Start()
@@ -23,6 +23,10 @@ public class ItemSlot : MonoBehaviour
         if (gameObject.name == "ObjectiveSlot")
         {
             canBeHeld = false;
+        } else
+        {
+            ObjectiveCheck objCheck = GameObject.Find("Objective").GetComponent<ObjectiveCheck>();
+            objCheck.CheckForBaseItem();
         }
         if (gameObject.tag == "Crafting")
         {
