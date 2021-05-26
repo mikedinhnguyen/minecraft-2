@@ -13,22 +13,25 @@ public class PointerBehavior : MonoBehaviour
     {
         soundMan = GameObject.Find("Canvas").GetComponent<SoundManager>();
         holdingSlot = GameObject.Find("HoldingSlot").GetComponent<ItemSlot>();
-        if (transform.parent.parent.name == "Construction")
+
+        switch(transform.parent.parent.name)
         {
-            inventory = GameObject.Find("InventoryC").GetComponent<Transform>();
+            case "Construction":
+                inventory = GameObject.Find("InventoryC").GetComponent<Transform>();
+                break;
+            case "Natural":
+                inventory = GameObject.Find("InventoryN").GetComponent<Transform>();
+                break;
+            case "Misc. Items":
+                inventory = GameObject.Find("InventoryI").GetComponent<Transform>();
+                break;
+            case "Otherworldly (Nether + End)":
+                inventory = GameObject.Find("InventoryO").GetComponent<Transform>();
+                break;
+            default:
+                break;
         }
-        else if (transform.parent.parent.name == "Equipment")
-        {
-            inventory = GameObject.Find("InventoryE").GetComponent<Transform>();
-        }
-        else if (transform.parent.parent.name == "Items")
-        {
-            inventory = GameObject.Find("InventoryI").GetComponent<Transform>();
-        }
-        else if (transform.parent.parent.name == "Nature")
-        {
-            inventory = GameObject.Find("InventoryN").GetComponent<Transform>();
-        }
+
         //inventory = GameObject.Find("Inventory").GetComponent<Transform>();
     }
 

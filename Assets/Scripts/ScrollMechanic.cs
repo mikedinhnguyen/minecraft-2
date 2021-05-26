@@ -19,7 +19,7 @@ public class ScrollMechanic : MonoBehaviour
     {
         if (isScrolling)
         {
-            sbar.value = startValue + (startPos - Input.mousePosition.y) / 250;
+            sbar.value = startValue + (startPos - Input.mousePosition.y) / 350;
             if (sbar.value <= 0)
             {
                 sbar.value = 0;
