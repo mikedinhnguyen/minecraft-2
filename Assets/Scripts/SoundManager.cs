@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip finished;
     public AudioClip[] clearSounds;
     public AudioClip[] passSounds;
+    public AudioClip[] hintSounds;
     int rand;
 
     public void PlayClickNoise()
@@ -35,5 +36,11 @@ public class SoundManager : MonoBehaviour
     {
         rand = Random.Range(0, passSounds.Length);
         sound.PlayOneShot(passSounds[rand], 0.5f);
+    }
+
+    public void PlayHintNoise()
+    {
+        rand = Random.Range(0, hintSounds.Length);
+        sound.PlayOneShot(hintSounds[rand], 0.5f);
     }
 }

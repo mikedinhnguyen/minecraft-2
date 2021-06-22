@@ -7,12 +7,12 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI timeText;
     [HideInInspector]
     public static bool isRunning = false;
+    Color gray = new Color(77f / 255f, 77f / 255f, 77f / 255f);
 
     public void StartTimer(int time)
     {
         isRunning = true;
         timeRemaining = time;
-        Color gray = new Color(77f/255f, 77f/255f, 77f/255f);
         timeText.color = gray;
     }
 
@@ -36,7 +36,7 @@ public class Timer : MonoBehaviour
                 LevelManager.gameIsEnded = true;
             }
 
-            timeText.text = timeRemaining.ToString("F1");
+            timeText.text = timeRemaining.ToString("F0") + "s";
         }
     }
 }

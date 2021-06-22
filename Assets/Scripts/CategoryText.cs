@@ -8,6 +8,7 @@ public class CategoryText : MonoBehaviour
     public GameObject tab3;
     public GameObject tab4;
     public TextMeshProUGUI category;
+    public ObjectiveCheck objCheck;
 
     // Update is called once per frame
     public void ChangeCategoryName()
@@ -28,5 +29,6 @@ public class CategoryText : MonoBehaviour
         {
             category.text = tab4.name;
         }
+        objCheck.CheckForBaseItem();
     }
 }

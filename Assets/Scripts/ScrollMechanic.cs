@@ -20,13 +20,30 @@ public class ScrollMechanic : MonoBehaviour
         if (isScrolling)
         {
             sbar.value = startValue + (startPos - Input.mousePosition.y) / 350;
-            if (sbar.value <= 0)
+            if (sbar.value < 0)
             {
                 sbar.value = 0;
+                sbar.size = 0.431f;
             }
-            if (sbar.value >= 1)
+            if (sbar.value > 1)
             {
                 sbar.value = 1;
+                sbar.size = 0.431f;
+            }
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f) // forward
+        {
+            float mouseSpeed = Input.GetAxis("Mouse ScrollWheel");
+            sbar.value += mouseSpeed / 150f;
+            if (sbar.value < 0)
+            {
+                sbar.value = 0;
+                sbar.size = 0.431f;
+            }
+            if (sbar.value > 1)
+            {
+                sbar.value = 1;
+                sbar.size = 0.431f;
             }
         }
     }

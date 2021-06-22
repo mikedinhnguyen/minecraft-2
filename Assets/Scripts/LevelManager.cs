@@ -13,9 +13,11 @@ public class LevelManager : MonoBehaviour
     public TextMeshProUGUI beatHighScore;
     public TextMeshProUGUI finalScore;
     public TextMeshProUGUI itemName;
+    public TextMeshProUGUI timerText;
     public GameObject gameView;
     public GameObject pauseScreen;
     public GameObject endScreen;
+    public GameObject timerOptions;
 
     public static string tabWithItem;
     public static bool gameIsEnded;
@@ -86,6 +88,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator SolveForPlayer()
     {
+        sm.PlayClickNoise();
         recipeManager.Solve(objective);
         yield return new WaitForSeconds(1f);
         recipeManager.ClearAllSlots();
@@ -103,6 +106,10 @@ public class LevelManager : MonoBehaviour
         itemName.text = objective.currentItem.itemName;
         int scoreInt = int.Parse(score.text);
         scoreInt -= recipeManager.recipeValue;
+        if (scoreInt < 0)
+        {
+            scoreInt = 0;
+        }
         score.text = scoreInt.ToString();
 
         objCheck.CheckForBaseItem();
@@ -134,17 +141,15 @@ public class LevelManager : MonoBehaviour
 
     public void GiveHint()
     {
+        sm.PlayHintNoise();
         // deduct 5 points
         int scoreInt = int.Parse(score.text);
         scoreInt -= 2;
+        if (scoreInt < 0)
+        {
+            scoreInt = 0;
+        }
         score.text = scoreInt.ToString();
-
-        scoreDiff.text = "-2";
-        Color red = new Color(209f / 255f, 47f / 255f, 44f / 255f);
-        scoreDiff.color = red;
-
-        scoreDiff.canvasRenderer.SetAlpha(1.0f);
-        scoreDiff.CrossFadeAlpha(0, 2, false); // fade out
 
         recipeManager.Hint(objective);
     }
@@ -236,6 +241,26 @@ public class LevelManager : MonoBehaviour
 
     public void ReloadGame()
     {
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
+        timerOptions.SetActive(true);
+        timerText.text = "0";
+        Color gray = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+        timerText.color = gray;
+
+        tabWithItem = "";
+        score.text = "0";
+        done = false;
+        gameIsEnded = false;
+        gameView.SetActive(true);
+        endScreen.SetActive(false);
+
+        rand = Random.Range(0, chooseFrom.Length - 1);
+        objective.currentItem = chooseFrom[rand];
+        objective.UpdateSlotData();
+
+        objCheck.CheckForBaseItem();
+
+        itemName.text = objective.currentItem.itemName;
+        playerSolved = true;
     }
 }
