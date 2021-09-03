@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class TitleFloat : MonoBehaviour
 {
-    public float amplitude = 5f;
-    public float frequency = 1f;
+    public float amplitude = 10;
+    public float frequency  = 1;
     
     Vector3 posOffset = new Vector3();
     Vector3 tempPos = new Vector3();
@@ -29,6 +29,12 @@ public class TitleFloat : MonoBehaviour
         //{
         //    StartCoroutine(SlowDown());
         //}
+    }
+
+    public void ChangeTransformPosition()
+    {
+        // Store the starting position & rotation of the object
+        posOffset = transform.position;
     }
 
     public IEnumerator SlowDown()

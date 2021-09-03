@@ -36,7 +36,7 @@ public class Timer : MonoBehaviour
                 LevelManager.gameIsEnded = true;
             }
 
-            timeText.text = timeRemaining.ToString("F0") + "s";
+            timeText.text = timeRemaining.ToString("F0");
         }
     }
 }

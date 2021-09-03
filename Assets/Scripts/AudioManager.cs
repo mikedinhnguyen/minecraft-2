@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
+    public AudioClip[] mobNoises;
+    public AudioClip click;
     public AudioMixer mixer;
     public AudioSource sound;
     public Slider masterSlider;
@@ -42,6 +44,14 @@ public class AudioManager : MonoBehaviour
     {
         sfxVol = sliderVal;
         mixer.SetFloat("SFXVolume", Mathf.Log10(sfxVol) * 20);
+        int rand = Random.Range(0, mobNoises.Length);
+        sound.clip = mobNoises[rand];
+        sound.PlayDelayed(0.2f);
+    }
+
+    public void PlayClick()
+    {
+        sound.clip = click;
         sound.Play();
     }
 }

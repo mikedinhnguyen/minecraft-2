@@ -19,14 +19,14 @@ public class PointerBehavior : MonoBehaviour
             case "Construction":
                 inventory = GameObject.Find("InventoryC").GetComponent<Transform>();
                 break;
-            case "Natural":
-                inventory = GameObject.Find("InventoryN").GetComponent<Transform>();
+            case "Equipment":
+                inventory = GameObject.Find("InventoryE").GetComponent<Transform>();
                 break;
-            case "Misc. Items":
+            case "Items":
                 inventory = GameObject.Find("InventoryI").GetComponent<Transform>();
                 break;
-            case "Otherworldly (Nether + End)":
-                inventory = GameObject.Find("InventoryO").GetComponent<Transform>();
+            case "Nature":
+                inventory = GameObject.Find("InventoryN").GetComponent<Transform>();
                 break;
             default:
                 break;

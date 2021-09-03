@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -7,6 +8,10 @@ public class LevelManager : MonoBehaviour
 {
     public SoundManager sm;
     public ItemSO[] chooseFrom;
+    public Sprite[] mobIcons;
+    public Image endMobIcon;
+    public Sprite[] baseTexts;
+    public Image baseText;
     public TextMeshProUGUI score;
     public TextMeshProUGUI scoreDiff;
     public TextMeshProUGUI highScore;
@@ -49,6 +54,8 @@ public class LevelManager : MonoBehaviour
 
         objCheck.CheckForBaseItem();
 
+        baseText.sprite = baseTexts[1];
+
         itemName.text = objective.currentItem.itemName;
         playerSolved = true;
     }
@@ -76,11 +83,11 @@ public class LevelManager : MonoBehaviour
             StopGame();
             done = true; // to not loop the sound over again
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && !gameIsPaused)
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameIsPaused && CountdownTimer.canPause)
         {
             PauseGame();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && gameIsPaused)
+        else if (Input.GetKeyDown(KeyCode.Escape) && gameIsPaused && CountdownTimer.canPause)
         {
             UnpauseGame();
         }
@@ -131,6 +138,12 @@ public class LevelManager : MonoBehaviour
         objCheck.CheckForBaseItem();
 
         recipeManager.ClearAllSlots();
+    }
+
+    public void Debug()
+    {
+        int scoreInt = 180;
+        score.text = scoreInt.ToString();
     }
 
     public void Clear()
@@ -189,6 +202,7 @@ public class LevelManager : MonoBehaviour
     public void PracticeMode()
     {
         practice = true;
+        baseText.sprite = baseTexts[0];
     }
 
     public void PauseGame()
@@ -220,11 +234,12 @@ public class LevelManager : MonoBehaviour
         gameView.SetActive(false);
         endScreen.SetActive(true);
         finalScore.text = score.text;
-        sm.PlayFinishedNoise();
+        //sm.PlayFinishedNoise();
         int scoreInt = int.Parse(score.text);
         if (scoreInt > highScoreInt)
         {
             //PlayerPrefs.SetInt("HighScore", scoreInt);
+            highScoreInt = scoreInt;
             SaveSystem.SavePlayer(scoreInt);
             beatHighScore.text = "You beat your high score!";
         }
@@ -232,6 +247,73 @@ public class LevelManager : MonoBehaviour
         {
             beatHighScore.text = "";
         }
+
+        int mobNum = 0;
+
+        //if (scoreInt >= 0 && scoreInt <= 19)
+        //{
+        //    endMobIcon.sprite = mobIcons[0]; // pufferfish
+        //}
+        //else 
+        if (scoreInt >= 20 && scoreInt <= 39)
+        {
+            mobNum = 1; // bee
+        }
+        else if (scoreInt >= 40 && scoreInt <= 59)
+        {
+            mobNum = 2; // chicken
+        }
+        else if (scoreInt >= 60 && scoreInt <= 79)
+        {
+            mobNum = 3; // pig
+        }
+        else if (scoreInt >= 80 && scoreInt <= 99)
+        {
+            mobNum = 4; // sheep
+        }
+        else if (scoreInt >= 100 && scoreInt <= 119)
+        {
+            mobNum = 5; // cow
+        }
+        else if (scoreInt >= 120 && scoreInt <= 139)
+        {
+            mobNum = 6; // spider
+        }
+        else if (scoreInt >= 140 && scoreInt <= 159)
+        {
+            mobNum = 7; // zombie
+        }
+        else if (scoreInt >= 160 && scoreInt <= 179)
+        {
+            mobNum = 8; // skeleton
+        }
+        else if (scoreInt >= 180 && scoreInt <= 199)
+        {
+            mobNum = 9; // creeper
+        }
+        else if (scoreInt >= 200 && scoreInt <= 219)
+        {
+            mobNum = 10; // piglin
+        }
+        else if (scoreInt >= 220 && scoreInt <= 239)
+        {
+            mobNum = 11; // enderman
+        }
+        else if (scoreInt >= 240 && scoreInt <= 259)
+        {
+            mobNum = 12; // iron golem
+        }
+        else if (scoreInt >= 260 && scoreInt <= 279)
+        {
+            mobNum = 13; // ender dragon
+        }
+        else if (scoreInt >= 280)
+        {
+            mobNum = 14; // steve
+        }
+
+        endMobIcon.sprite = mobIcons[mobNum];
+        sm.PlayMobNoise(mobNum);
     }
 
     public void GoToMenu()
@@ -242,8 +324,13 @@ public class LevelManager : MonoBehaviour
     public void ReloadGame()
     {
         //SceneManager.LoadScene(1);
+        CountdownTimer.canPause = false;
+        practice = false;
+        baseText.sprite = baseTexts[1];
+        ClearHolding();
+        recipeManager.ClearAllSlots();
         timerOptions.SetActive(true);
-        timerText.text = "0";
+        timerText.text = ""; 
         Color gray = new Color(77f / 255f, 77f / 255f, 77f / 255f);
         timerText.color = gray;
 

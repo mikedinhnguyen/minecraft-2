@@ -6,10 +6,22 @@ using TMPro;
 public class Menu : MonoBehaviour
 {
     public TextMeshProUGUI highScore;
+    public Image logo;
 
     public void Start()
     {
         GrabHighScore();
+        //logo.transform.position = new Vector3(466f, 380f);
+    }
+
+    public void Update()
+    {
+        if (logo.transform.hasChanged)
+        {
+            //print("The transform has changed!");
+            logo.GetComponent<TitleFloat>().ChangeTransformPosition();
+            logo.transform.hasChanged = false;
+        }
     }
 
     public void StartButton()
@@ -41,5 +53,7 @@ public class Menu : MonoBehaviour
     {
         //PlayerPrefs.DeleteKey("HighScore");
         SaveSystem.DeletePlayer();
+        int highScoreInt = 0;
+        highScore.text = highScoreInt.ToString();
     }
 }
